@@ -1,0 +1,31 @@
+﻿movement.filtering
+==================
+
+.. rubric:: Description
+
+.. automodule:: movement.filtering
+
+.. currentmodule:: movement.filtering
+
+
+
+
+.. rubric:: Functions
+
+.. autosummary::
+    :toctree: .
+    :nosignatures:
+    
+    filter_by_confidence
+    
+    interpolate_over_time
+    
+    log_to_attrs
+    
+    median_filter
+    
+    report_nan_values
+    
+    savgol_filter
+    
+

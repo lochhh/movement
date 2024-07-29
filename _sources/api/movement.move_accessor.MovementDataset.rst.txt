@@ -1,0 +1,32 @@
+MovementDataset
+===============
+
+.. currentmodule:: movement.move_accessor
+
+.. autoclass:: MovementDataset
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   
+
+   
+   
+   
+   
+   
+   
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+      ~MovementDataset.validate
+   
+   
+   
