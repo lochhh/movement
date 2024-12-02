@@ -51,6 +51,23 @@ Below is a gallery of examples using ``movement``.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Load pose tracks from one file format, modify them, and save them to another file format.">
+
+.. only:: html
+
+  .. image:: /examples/images/thumb/sphx_glr_convert_file_formats_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_convert_file_formats.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Convert pose tracks between file formats</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Smooth pose tracks using the median and Savitzky-Golay filters.">
 
 .. only:: html
@@ -112,6 +129,7 @@ Below is a gallery of examples using ``movement``.
 
    /examples/load_and_explore_poses
    /examples/filter_and_interpolate
+   /examples/convert_file_formats
    /examples/smooth
    /examples/compute_kinematics
    /examples/compute_polar_coordinates

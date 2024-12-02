@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:24.847** total execution time for 5 files **from all galleries**:
+**00:22.724** total execution time for 6 files **from all galleries**:
 
 .. container::
 
@@ -33,17 +33,20 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_compute_polar_coordinates.py` (``../../examples/compute_polar_coordinates.py``)
-     - 00:16.854
+     - 00:16.071
      - 0.0
    * - :ref:`sphx_glr_examples_filter_and_interpolate.py` (``../../examples/filter_and_interpolate.py``)
-     - 00:03.541
+     - 00:02.235
      - 0.0
    * - :ref:`sphx_glr_examples_compute_kinematics.py` (``../../examples/compute_kinematics.py``)
-     - 00:02.090
+     - 00:01.1000
      - 0.0
    * - :ref:`sphx_glr_examples_smooth.py` (``../../examples/smooth.py``)
-     - 00:01.613
+     - 00:01.505
      - 0.0
    * - :ref:`sphx_glr_examples_load_and_explore_poses.py` (``../../examples/load_and_explore_poses.py``)
-     - 00:00.748
+     - 00:00.628
+     - 0.0
+   * - :ref:`sphx_glr_examples_convert_file_formats.py` (``../../examples/convert_file_formats.py``)
+     - 00:00.285
      - 0.0

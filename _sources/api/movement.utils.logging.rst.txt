@@ -20,6 +20,8 @@
     
     log_error
     
+    log_to_attrs
+    
     log_warning
     
 

@@ -20,11 +20,7 @@
     
     interpolate_over_time
     
-    log_to_attrs
-    
     median_filter
-    
-    report_nan_values
     
     savgol_filter
     
