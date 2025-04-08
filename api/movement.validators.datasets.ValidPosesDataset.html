@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,11 +27,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5dc116f1" />
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5c7c04c7" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=6aee1ebc"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -55,10 +55,10 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="movement.validators.files" href="movement.validators.files.html" />
-    <link rel="prev" title="ValidBboxesDataset" href="movement.validators.datasets.ValidBboxesDataset.html" />
+    <link rel="prev" title="ValidBboxesDataset" href="movement.validators.datasets.ValidBboxesDataset.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="" />   
   </head>
   
   
@@ -158,6 +158,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api_index.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
   </a>
 </li>
 
@@ -289,6 +296,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -349,6 +363,7 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.filter_by_confidence.html">filter_by_confidence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.interpolate_over_time.html">interpolate_over_time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.median_filter.html">median_filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.filtering.rolling_filter.html">rolling_filter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.savgol_filter.html">savgol_filter</a></li>
 </ul>
 </details></li>
@@ -359,6 +374,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.io.load_poses.html">movement.io.load_poses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_anipose_file.html">from_anipose_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_anipose_style_df.html">from_anipose_style_df</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_dlc_file.html">from_dlc_file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_dlc_style_df.html">from_dlc_style_df</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_file.html">from_file</a></li>
@@ -379,6 +396,7 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_acceleration.html">compute_acceleration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_displacement.html">compute_displacement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_forward_vector.html">compute_forward_vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_forward_vector_angle.html">compute_forward_vector_angle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_head_direction_vector.html">compute_head_direction_vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_pairwise_distances.html">compute_pairwise_distances</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_path_length.html">compute_path_length</a></li>
@@ -387,17 +405,60 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_velocity.html">compute_velocity</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.napari.convert.html">movement.napari.convert</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.convert.ds_to_napari_tracks.html">ds_to_napari_tracks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.napari.layer_styles.html">movement.napari.layer_styles</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.layer_styles.LayerStyle.html">LayerStyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.layer_styles.PointsStyle.html">PointsStyle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.plots.occupancy.html">movement.plots.occupancy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.plots.occupancy.plot_occupancy.html">plot_occupancy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.plots.trajectory.html">movement.plots.trajectory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.plots.trajectory.plot_centroid_trajectory.html">plot_centroid_trajectory</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.base.html">movement.roi.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.base.BaseRegionOfInterest.html">BaseRegionOfInterest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.conditions.html">movement.roi.conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.conditions.compute_region_occupancy.html">compute_region_occupancy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.line.html">movement.roi.line</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.line.LineOfInterest.html">LineOfInterest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.polygon.html">movement.roi.polygon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.polygon.PolygonOfInterest.html">PolygonOfInterest</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.sample_data.html">movement.sample_data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.fetch_dataset.html">fetch_dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.fetch_dataset_paths.html">fetch_dataset_paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.list_datasets.html">list_datasets</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.transforms.html">movement.transforms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.transforms.scale.html">scale</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.broadcasting.html">movement.utils.broadcasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.apply_along_da_axis.html">apply_along_da_axis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.broadcastable_method.html">broadcastable_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.make_broadcastable.html">make_broadcastable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.space_broadcastable.html">space_broadcastable</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.logging.html">movement.utils.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.configure_logging.html">configure_logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_error.html">log_error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.MovementLogger.html">MovementLogger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_to_attrs.html">log_to_attrs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_warning.html">log_warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.showwarning.html">showwarning</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.reports.html">movement.utils.reports</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -408,6 +469,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.vector.html">movement.utils.vector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.cart2pol.html">cart2pol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.compute_norm.html">compute_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.compute_signed_angle_2d.html">compute_signed_angle_2d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.convert_to_unit.html">convert_to_unit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.pol2cart.html">pol2cart</a></li>
 </ul>
@@ -422,6 +484,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.validators.files.html">movement.validators.files</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidAniposeCSV.html">ValidAniposeCSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidDeepLabCutCSV.html">ValidDeepLabCutCSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidFile.html">ValidFile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidHDF5.html">ValidHDF5</a></li>
@@ -435,9 +498,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -485,21 +553,21 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-  <section id="validposesdataset">
+                   <section id="validposesdataset">
 <h1>ValidPosesDataset<a class="headerlink" href="#validposesdataset" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="movement.validators.datasets.ValidPosesDataset">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">movement.validators.datasets.</span></span><span class="sig-name descname"><span class="pre">ValidPosesDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">individual_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keypoint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_software</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/movement/validators/datasets.html#ValidPosesDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#movement.validators.datasets.ValidPosesDataset" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class for validating poses data intended for a <code class="docutils literal notranslate"><span class="pre">movement</span></code> dataset.</p>
 <p>The validator ensures that within the <code class="docutils literal notranslate"><span class="pre">movement</span> <span class="pre">poses</span></code> dataset:</p>
 <ul class="simple">
 <li><p>The required <code class="docutils literal notranslate"><span class="pre">position_array</span></code> is a numpy array
-with the last dimension containing 2 or 3 spatial coordinates.</p></li>
+with the <code class="docutils literal notranslate"><span class="pre">space</span></code> dimension containing 2 or 3 spatial coordinates.</p></li>
 <li><p>The optional <code class="docutils literal notranslate"><span class="pre">confidence_array</span></code>, if provided, is a numpy array
-with its shape matching the first three dimensions of the
-<code class="docutils literal notranslate"><span class="pre">position_array</span></code>; otherwise, it defaults to an array of NaNs.</p></li>
+with its shape matching that of the <code class="docutils literal notranslate"><span class="pre">position_array</span></code>,
+excluding the <code class="docutils literal notranslate"><span class="pre">space</span></code> dimension;
+otherwise, it defaults to an array of NaNs.</p></li>
 <li><p>The optional <code class="docutils literal notranslate"><span class="pre">individual_names</span></code> and <code class="docutils literal notranslate"><span class="pre">keypoint_names</span></code>,
 if provided, match the number of individuals and keypoints
 in the dataset, respectively; otherwise, default names are assigned.</p></li>
@@ -510,7 +578,7 @@ it defaults to None.</p></li>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="movement.validators.datasets.ValidPosesDataset.position_array">
 <span class="sig-name descname"><span class="pre">position_array</span></span><a class="headerlink" href="#movement.validators.datasets.ValidPosesDataset.position_array" title="Link to this definition">#</a></dt>
-<dd><p>Array of shape (n_frames, n_individuals, n_keypoints, n_space)
+<dd><p>Array of shape (n_frames, n_space, n_keypoints, n_individuals)
 containing the poses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -522,7 +590,7 @@ containing the poses.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="movement.validators.datasets.ValidPosesDataset.confidence_array">
 <span class="sig-name descname"><span class="pre">confidence_array</span></span><a class="headerlink" href="#movement.validators.datasets.ValidPosesDataset.confidence_array" title="Link to this definition">#</a></dt>
-<dd><p>Array of shape (n_frames, n_individuals, n_keypoints) containing
+<dd><p>Array of shape (n_frames, n_keypoints, n_individuals) containing
 the point-wise confidence scores.
 If None (default), the scores will be set to an array of NaNs.</p>
 <dl class="field-list simple">
@@ -540,7 +608,7 @@ If None (default), the scores will be set to an array of NaNs.</p>
 “individual_1”, etc.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of str, optional</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, optional</p>
 </dd>
 </dl>
 </dd></dl>
@@ -553,7 +621,7 @@ If None (default), the scores will be set to an array of NaNs.</p>
 etc.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of str, optional</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, optional</p>
 </dd>
 </dl>
 </dd></dl>
@@ -564,7 +632,7 @@ etc.</p>
 <dd><p>Frames per second of the video. Defaults to None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float, optional</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, optional</p>
 </dd>
 </dl>
 </dd></dl>
@@ -576,14 +644,14 @@ etc.</p>
 Defaults to None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str, optional</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, optional</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the dataset does not meet the <code class="docutils literal notranslate"><span class="pre">movement</span> <span class="pre">poses</span></code>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If the dataset does not meet the <code class="docutils literal notranslate"><span class="pre">movement</span> <span class="pre">poses</span></code>
     dataset requirements.</p>
 </dd>
 </dl>
@@ -591,6 +659,9 @@ Defaults to None.</p>
 
 </section>
 
+<div class="section ablog__blog_comments">
+   
+</div>
 
                 </article>
               
@@ -651,13 +722,13 @@ Defaults to None.</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/api/movement.validators.datasets.ValidPosesDataset.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/movement.validators.datasets.ValidPosesDataset.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -672,8 +743,8 @@ Defaults to None.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -687,7 +758,7 @@ Defaults to None.</p>
     <p class="theme-version">
     Built with the
     <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
-    0.16.0.
+    0.16.1.
     </p></div>
       
     </div>

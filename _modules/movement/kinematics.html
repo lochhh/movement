@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,11 +26,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5dc116f1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5c7c04c7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -38,10 +38,10 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=6aee1ebc"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -52,10 +52,10 @@
     <link rel="canonical" href="https://movement.neuroinformatics.dev/_modules/movement/kinematics.html" />
     <link rel="icon" href="../../_static/light-logo-niu.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="" />   
   </head>
   
   
@@ -155,6 +155,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../api_index.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
   </a>
 </li>
 
@@ -284,6 +291,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -336,9 +350,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -383,26 +402,32 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-  <h1>Source code for movement.kinematics</h1><div class="highlight"><pre>
+                   <h1>Source code for movement.kinematics</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Compute kinematic variables like velocity and acceleration.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hashable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
 
-<span class="kn">from</span> <span class="nn">movement.utils.logging</span> <span class="kn">import</span> <span class="n">log_error</span><span class="p">,</span> <span class="n">log_warning</span>
-<span class="kn">from</span> <span class="nn">movement.utils.reports</span> <span class="kn">import</span> <span class="n">report_nan_values</span>
-<span class="kn">from</span> <span class="nn">movement.utils.vector</span> <span class="kn">import</span> <span class="n">compute_norm</span>
-<span class="kn">from</span> <span class="nn">movement.validators.arrays</span> <span class="kn">import</span> <span class="n">validate_dims_coords</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.utils.reports</span><span class="w"> </span><span class="kn">import</span> <span class="n">report_nan_values</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.utils.vector</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">compute_norm</span><span class="p">,</span>
+    <span class="n">compute_signed_angle_2d</span><span class="p">,</span>
+    <span class="n">convert_to_unit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.validators.arrays</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_dims_coords</span>
 
 
 <div class="viewcode-block" id="compute_displacement">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_displacement.html#movement.kinematics.compute_displacement">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_displacement</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_displacement</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute displacement array in cartesian coordinates.</span>
 
 <span class="sd">    The displacement array is defined as the difference between the position</span>
@@ -448,7 +473,7 @@
 
 <div class="viewcode-block" id="compute_velocity">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_velocity.html#movement.kinematics.compute_velocity">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_velocity</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_velocity</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute velocity array in cartesian coordinates.</span>
 
 <span class="sd">    The velocity array is the first time-derivative of the position</span>
@@ -490,7 +515,7 @@
 
 <div class="viewcode-block" id="compute_acceleration">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_acceleration.html#movement.kinematics.compute_acceleration">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_acceleration</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_acceleration</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute acceleration array in cartesian coordinates.</span>
 
 <span class="sd">    The acceleration array is the second time-derivative of the</span>
@@ -533,7 +558,7 @@
 
 <div class="viewcode-block" id="compute_time_derivative">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_time_derivative.html#movement.kinematics.compute_time_derivative">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_time_derivative</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">order</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_time_derivative</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">order</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the time-derivative of an array using numerical differentiation.</span>
 
 <span class="sd">    This function uses :meth:`xarray.DataArray.differentiate`,</span>
@@ -560,11 +585,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">TypeError</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Order must be an integer, but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">order</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order must be an integer, but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">order</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">order</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="s2">&quot;Order must be a positive integer.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Order must be a positive integer.&quot;</span><span class="p">))</span>
     <span class="n">validate_dims_coords</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="p">[]})</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">data</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order</span><span class="p">):</span>
@@ -575,7 +600,7 @@
 
 <div class="viewcode-block" id="compute_speed">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_speed.html#movement.kinematics.compute_speed">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_speed</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_speed</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute instantaneous speed at each time point.</span>
 
 <span class="sd">    Speed is a scalar quantity computed as the Euclidean norm (magnitude)</span>
@@ -602,12 +627,12 @@
 
 <div class="viewcode-block" id="compute_forward_vector">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_forward_vector.html#movement.kinematics.compute_forward_vector">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_forward_vector</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_forward_vector</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
-    <span class="n">left_keypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">right_keypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">left_keypoint</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">,</span>
+    <span class="n">right_keypoint</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">,</span>
     <span class="n">camera_view</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;top_down&quot;</span><span class="p">,</span> <span class="s2">&quot;bottom_up&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;top_down&quot;</span><span class="p">,</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a 2D forward vector given two left-right symmetric keypoints.</span>
 
 <span class="sd">    The forward vector is computed as a vector perpendicular to the</span>
@@ -622,9 +647,9 @@
 <span class="sd">        The input data representing position. This must contain</span>
 <span class="sd">        the two symmetrical keypoints located on the left and</span>
 <span class="sd">        right sides of the body, respectively.</span>
-<span class="sd">    left_keypoint : str</span>
+<span class="sd">    left_keypoint : Hashable</span>
 <span class="sd">        Name of the left keypoint, e.g., &quot;left_ear&quot;</span>
-<span class="sd">    right_keypoint : str</span>
+<span class="sd">    right_keypoint : Hashable</span>
 <span class="sd">        Name of the right keypoint, e.g., &quot;right_ear&quot;</span>
 <span class="sd">    camera_view : Literal[&quot;top_down&quot;, &quot;bottom_up&quot;], optional</span>
 <span class="sd">        The camera viewing angle, used to determine the upwards</span>
@@ -672,50 +697,50 @@
         <span class="p">},</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">space</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="s2">&quot;Input data must have exactly 2 spatial dimensions, but &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;currently has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">space</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Input data must have exactly 2 spatial dimensions, but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;currently has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">space</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span>
-
     <span class="c1"># Validate input keypoints</span>
     <span class="k">if</span> <span class="n">left_keypoint</span> <span class="o">==</span> <span class="n">right_keypoint</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span> <span class="s2">&quot;The left and right keypoints may not be identical.&quot;</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The left and right keypoints may not be identical.&quot;</span><span class="p">)</span>
         <span class="p">)</span>
-
     <span class="c1"># Define right-to-left vector</span>
     <span class="n">right_to_left_vector</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
         <span class="n">keypoints</span><span class="o">=</span><span class="n">left_keypoint</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">keypoints</span><span class="o">=</span><span class="n">right_keypoint</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
     <span class="c1"># Define upward vector</span>
     <span class="c1"># default: negative z direction in the image coordinate system</span>
-    <span class="k">if</span> <span class="n">camera_view</span> <span class="o">==</span> <span class="s2">&quot;top_down&quot;</span><span class="p">:</span>
-        <span class="n">upward_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">upward_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
+    <span class="n">upward_vector</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">camera_view</span> <span class="o">==</span> <span class="s2">&quot;top_down&quot;</span>
+        <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="p">)</span>
     <span class="n">upward_vector</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">upward_vector</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">time</span><span class="p">),</span> <span class="mi">1</span><span class="p">]),</span>
         <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;space&quot;</span><span class="p">],</span>
+        <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
     <span class="p">)</span>
-
     <span class="c1"># Compute forward direction as the cross product</span>
     <span class="c1"># (right-to-left) cross (forward) = up</span>
     <span class="n">forward_vector</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span>
         <span class="n">right_to_left_vector</span><span class="p">,</span> <span class="n">upward_vector</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;space&quot;</span>
-    <span class="p">)[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># keep only the first 2 dimensions of the result</span>
-
+    <span class="p">)</span><span class="o">.</span><span class="n">drop_sel</span><span class="p">(</span>
+        <span class="n">space</span><span class="o">=</span><span class="s2">&quot;z&quot;</span>
+    <span class="p">)</span>  <span class="c1"># keep only the first 2 spatal dimensions of the result</span>
     <span class="c1"># Return unit vector</span>
-
-    <span class="k">return</span> <span class="n">forward_vector</span> <span class="o">/</span> <span class="n">compute_norm</span><span class="p">(</span><span class="n">forward_vector</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">convert_to_unit</span><span class="p">(</span><span class="n">forward_vector</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="compute_head_direction_vector">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_head_direction_vector.html#movement.kinematics.compute_head_direction_vector">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_head_direction_vector</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_head_direction_vector</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">left_keypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">right_keypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -759,7 +784,94 @@
 
 
 
-<span class="k">def</span> <span class="nf">_cdist</span><span class="p">(</span>
+<div class="viewcode-block" id="compute_forward_vector_angle">
+<a class="viewcode-back" href="../../api/movement.kinematics.compute_forward_vector_angle.html#movement.kinematics.compute_forward_vector_angle">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_forward_vector_angle</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">left_keypoint</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">,</span>
+    <span class="n">right_keypoint</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">,</span>
+    <span class="n">reference_vector</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">|</span> <span class="n">ArrayLike</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">camera_view</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;top_down&quot;</span><span class="p">,</span> <span class="s2">&quot;bottom_up&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;top_down&quot;</span><span class="p">,</span>
+    <span class="n">in_degrees</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the signed angle between a reference and a forward vector.</span>
+
+<span class="sd">    Forward vector angle is the :func:`signed angle\</span>
+<span class="sd">    &lt;movement.utils.vector.compute_signed_angle_2d&gt;`</span>
+<span class="sd">    between the reference vector and the animal&#39;s :func:`forward vector\</span>
+<span class="sd">    &lt;movement.kinematics.compute_forward_vector&gt;`.</span>
+<span class="sd">    The returned angles are in radians, spanning the range :math:`(-\pi, \pi]`,</span>
+<span class="sd">    unless ``in_degrees`` is set to ``True``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : xarray.DataArray</span>
+<span class="sd">        The input data representing position. This must contain</span>
+<span class="sd">        the two symmetrical keypoints located on the left and</span>
+<span class="sd">        right sides of the body, respectively.</span>
+<span class="sd">    left_keypoint : Hashable</span>
+<span class="sd">        Name of the left keypoint, e.g., &quot;left_ear&quot;, used to compute the</span>
+<span class="sd">        forward vector.</span>
+<span class="sd">    right_keypoint : Hashable</span>
+<span class="sd">        Name of the right keypoint, e.g., &quot;right_ear&quot;, used to compute the</span>
+<span class="sd">        forward vector.</span>
+<span class="sd">    reference_vector : xr.DataArray | ArrayLike, optional</span>
+<span class="sd">        The reference vector against which the ``forward_vector`` is</span>
+<span class="sd">        compared to compute 2D heading. Must be a two-dimensional vector,</span>
+<span class="sd">        in the form [x,y] - where ``reference_vector[0]`` corresponds to the</span>
+<span class="sd">        x-coordinate and ``reference_vector[1]`` corresponds to the</span>
+<span class="sd">        y-coordinate. If left unspecified, the vector [1, 0] is used by</span>
+<span class="sd">        default.</span>
+<span class="sd">    camera_view : Literal[&quot;top_down&quot;, &quot;bottom_up&quot;], optional</span>
+<span class="sd">        The camera viewing angle, used to determine the upwards</span>
+<span class="sd">        direction of the animal. Can be either ``&quot;top_down&quot;`` (where the</span>
+<span class="sd">        upwards direction is [0, 0, -1]), or ``&quot;bottom_up&quot;`` (where the</span>
+<span class="sd">        upwards direction is [0, 0, 1]). If left unspecified, the camera</span>
+<span class="sd">        view is assumed to be ``&quot;top_down&quot;``.</span>
+<span class="sd">    in_degrees : bool</span>
+<span class="sd">        If ``True``, the returned heading array is given in degrees.</span>
+<span class="sd">        Otherwise, the array is given in radians. Default ``False``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.DataArray</span>
+<span class="sd">        An xarray DataArray containing the computed forward vector angles,</span>
+<span class="sd">        with dimensions matching the input data array,</span>
+<span class="sd">        but without the ``keypoints`` and ``space`` dimensions.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    movement.utils.vector.compute_signed_angle_2d :</span>
+<span class="sd">        The underlying function used to compute the signed angle between two</span>
+<span class="sd">        2D vectors. See this function for a definition of the signed</span>
+<span class="sd">        angle between two vectors.</span>
+<span class="sd">    movement.kinematics.compute_forward_vector :</span>
+<span class="sd">        The function used to compute the forward vector.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert reference vector to np.array if not already a valid array</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reference_vector</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="n">reference_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reference_vector</span><span class="p">)</span>
+
+    <span class="c1"># Compute forward vector</span>
+    <span class="n">forward_vector</span> <span class="o">=</span> <span class="n">compute_forward_vector</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">left_keypoint</span><span class="p">,</span> <span class="n">right_keypoint</span><span class="p">,</span> <span class="n">camera_view</span><span class="o">=</span><span class="n">camera_view</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compute signed angle between reference vector and forward vector</span>
+    <span class="n">heading_array</span> <span class="o">=</span> <span class="n">compute_signed_angle_2d</span><span class="p">(</span>
+        <span class="n">forward_vector</span><span class="p">,</span> <span class="n">reference_vector</span><span class="p">,</span> <span class="n">v_as_left_operand</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Convert to degrees</span>
+    <span class="k">if</span> <span class="n">in_degrees</span><span class="p">:</span>
+        <span class="n">heading_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">heading_array</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">heading_array</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_cdist</span><span class="p">(</span>
     <span class="n">a</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">b</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">dim</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">],</span>
@@ -797,6 +909,7 @@
 <span class="sd">    **kwargs : dict</span>
 <span class="sd">        Additional keyword arguments to pass to</span>
 <span class="sd">        :func:`scipy.spatial.distance.cdist`.</span>
+
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -856,7 +969,7 @@
 
 <div class="viewcode-block" id="compute_pairwise_distances">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_pairwise_distances</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_pairwise_distances</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">dim</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">],</span>
     <span class="n">pairs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">],</span>
@@ -1017,15 +1130,17 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">dim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="s2">&quot;&#39;dim&#39; must be either &#39;individuals&#39; or &#39;keypoints&#39;, &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;but got </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;dim&#39; must be either &#39;individuals&#39; or &#39;keypoints&#39;, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;but got </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">pairs</span> <span class="o">!=</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;&#39;pairs&#39; must be a dictionary or &#39;all&#39;, but got </span><span class="si">{</span><span class="n">pairs</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;pairs&#39; must be a dictionary or &#39;all&#39;, but got </span><span class="si">{</span><span class="n">pairs</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span>
     <span class="n">validate_dims_coords</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">dim</span><span class="p">:</span> <span class="p">[]})</span>
     <span class="c1"># Find all possible pair combinations if &#39;all&#39; is specified</span>
@@ -1037,15 +1152,14 @@
         <span class="n">paired_elements</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span><span class="n">elem1</span><span class="p">,</span> <span class="n">elem2</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">elem1</span><span class="p">,</span> <span class="n">elem2_list</span> <span class="ow">in</span> <span class="n">pairs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">elem2</span> <span class="ow">in</span>
-            <span class="p">(</span>
+            <span class="k">for</span> <span class="n">elem2</span> <span class="ow">in</span> <span class="p">(</span>
                 <span class="c1"># Ensure elem2_list is a list</span>
                 <span class="p">[</span><span class="n">elem2_list</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem2_list</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">elem2_list</span>
             <span class="p">)</span>
         <span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">paired_elements</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span> <span class="s2">&quot;Could not find any pairs to compute distances for.&quot;</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not find any pairs to compute distances for.&quot;</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="n">pairwise_distances</span> <span class="o">=</span> <span class="p">{</span>
         <span class="sa">f</span><span class="s2">&quot;dist_</span><span class="si">{</span><span class="n">elem1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">elem2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">_cdist</span><span class="p">(</span>
@@ -1064,7 +1178,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_validate_labels_dimension</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_labels_dimension</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the input data contains the ``dim`` for labelling dimensions.</span>
 
 <span class="sd">    This function ensures the input data contains the ``dim``</span>
@@ -1092,7 +1206,7 @@
     <span class="k">return</span> <span class="n">data</span>
 
 
-<span class="k">def</span> <span class="nf">_validate_type_data_array</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_type_data_array</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the input data is an xarray DataArray.</span>
 
 <span class="sd">    Parameters</span>
@@ -1107,22 +1221,24 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">TypeError</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;Input data must be an xarray.DataArray, but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Input data must be an xarray.DataArray, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span>
 
 
 <div class="viewcode-block" id="compute_path_length">
 <a class="viewcode-back" href="../../api/movement.kinematics.compute_path_length.html#movement.kinematics.compute_path_length">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_path_length</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_path_length</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
     <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">stop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">nan_policy</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;ffill&quot;</span><span class="p">,</span> <span class="s2">&quot;scale&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ffill&quot;</span><span class="p">,</span>
     <span class="n">nan_warn_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the length of a path travelled between two time points.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the length of a path travelled between two time points.</span>
 
 <span class="sd">    The path length is defined as the sum of the norms (magnitudes) of the</span>
 <span class="sd">    displacement vectors between two time points ``start`` and ``stop``,</span>
@@ -1146,8 +1262,9 @@
 <span class="sd">        or ``&quot;scale&quot;``. Defaults to ``&quot;ffill&quot;`` (forward fill).</span>
 <span class="sd">        See Notes for more details on the two policies.</span>
 <span class="sd">    nan_warn_threshold : float, optional</span>
-<span class="sd">        If more than this proportion of values are missing in any point track,</span>
-<span class="sd">        a warning will be emitted. Defaults to 0.2 (20%).</span>
+<span class="sd">        If any point track in the data has at least (:math:`\ge`)</span>
+<span class="sd">        this proportion of values missing, a warning will be emitted.</span>
+<span class="sd">        Defaults to 0.2 (20%).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1179,10 +1296,12 @@
     <span class="c1"># Check that the data is not empty or too short</span>
     <span class="n">n_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">n_time</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;At least 2 time points are required to compute path length, &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;but </span><span class="si">{</span><span class="n">n_time</span><span class="si">}</span><span class="s2"> were found. Double-check the start and stop times.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;At least 2 time points are required to compute path length, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;but </span><span class="si">{</span><span class="n">n_time</span><span class="si">}</span><span class="s2"> were found. &quot;</span>
+                <span class="s2">&quot;Double-check the start and stop times.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span>
 
     <span class="n">_warn_about_nan_proportion</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nan_warn_threshold</span><span class="p">)</span>
@@ -1193,26 +1312,27 @@
                 <span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="p">)</span>  <span class="c1"># skip first displacement (always 0)</span>
         <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># return NaN if no valid segment</span>
-
     <span class="k">elif</span> <span class="n">nan_policy</span> <span class="o">==</span> <span class="s2">&quot;scale&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_compute_scaled_path_length</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;Invalid value for nan_policy: </span><span class="si">{</span><span class="n">nan_policy</span><span class="si">}</span><span class="s2">. &quot;</span>
-            <span class="s2">&quot;Must be one of &#39;ffill&#39; or &#39;scale&#39;.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid value for nan_policy: </span><span class="si">{</span><span class="n">nan_policy</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;Must be one of &#39;ffill&#39; or &#39;scale&#39;.&quot;</span>
+            <span class="p">)</span>
         <span class="p">)</span></div>
 
 
 
-<span class="k">def</span> <span class="nf">_warn_about_nan_proportion</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_warn_about_nan_proportion</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">nan_warn_threshold</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print a warning if the proportion of NaN values exceeds a threshold.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Issue warning if the proportion of NaN values exceeds a threshold.</span>
 
 <span class="sd">    The NaN proportion is evaluated per point track, and a given point is</span>
 <span class="sd">    considered NaN if any of its ``space`` coordinates are NaN. The warning</span>
-<span class="sd">    specifically lists the point tracks that exceed the threshold.</span>
+<span class="sd">    specifically lists the point tracks with at least (&gt;=)</span>
+<span class="sd">    ``nan_warn_threshold`` proportion of NaN values.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1225,25 +1345,25 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nan_warn_threshold</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nan_warn_threshold</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nan_warn_threshold</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-            <span class="ne">ValueError</span><span class="p">,</span>
-            <span class="s2">&quot;nan_warn_threshold must be between 0 and 1.&quot;</span><span class="p">,</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;nan_warn_threshold must be between 0 and 1.&quot;</span><span class="p">)</span>
         <span class="p">)</span>
-
     <span class="n">n_nans</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
     <span class="n">data_to_warn_about</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-        <span class="n">n_nans</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">nan_warn_threshold</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">n_nans</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">nan_warn_threshold</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_to_warn_about</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">log_warning</span><span class="p">(</span>
+    <span class="k">if</span> <span class="n">data_to_warn_about</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="s2">&quot;The result may be unreliable for point tracks with many &quot;</span>
-            <span class="s2">&quot;missing values. The following tracks have more than &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nan_warn_threshold</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2"> % NaN values:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;missing values. The following tracks have at least &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nan_warn_threshold</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2"> % NaN values:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report_nan_values</span><span class="p">(</span><span class="n">data_to_warn_about</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">report_nan_values</span><span class="p">(</span><span class="n">data_to_warn_about</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">_compute_scaled_path_length</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_compute_scaled_path_length</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute scaled path length based on proportion of valid segments.</span>
@@ -1276,6 +1396,9 @@
     <span class="c1"># return scaled path length</span>
     <span class="k">return</span> <span class="n">compute_norm</span><span class="p">(</span><span class="n">displacement</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">valid_proportion</span>
 </pre></div>
+<div class="section ablog__blog_comments">
+   
+</div>
 
                 </article>
               
@@ -1304,8 +1427,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1319,7 +1442,7 @@
     <p class="theme-version">
     Built with the
     <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
-    0.16.0.
+    0.16.1.
     </p></div>
       
     </div>

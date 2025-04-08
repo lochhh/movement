@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,11 +26,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=5dc116f1" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=5c7c04c7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -38,10 +38,10 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=6aee1ebc"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -52,10 +52,10 @@
     <link rel="canonical" href="https://movement.neuroinformatics.dev/_modules/movement/utils/vector.html" />
     <link rel="icon" href="../../../_static/light-logo-niu.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="" />   
   </head>
   
   
@@ -155,6 +155,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../api_index.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../blog/index.html">
+    Blog
   </a>
 </li>
 
@@ -284,6 +291,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../blog/index.html">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -336,9 +350,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -383,20 +402,19 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-  <h1>Source code for movement.utils.vector</h1><div class="highlight"><pre>
+                   <h1>Source code for movement.utils.vector</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Utility functions for vector operations.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
-<span class="kn">from</span> <span class="nn">movement.utils.logging</span> <span class="kn">import</span> <span class="n">log_error</span>
-<span class="kn">from</span> <span class="nn">movement.validators.arrays</span> <span class="kn">import</span> <span class="n">validate_dims_coords</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">movement.validators.arrays</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_dims_coords</span>
 
 
 <div class="viewcode-block" id="compute_norm">
 <a class="viewcode-back" href="../../../api/movement.utils.vector.compute_norm.html#movement.utils.vector.compute_norm">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_norm</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_norm</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the norm of the vectors along the spatial dimension.</span>
 
 <span class="sd">    The norm of a vector is its magnitude, also called Euclidean norm, 2-norm</span>
@@ -446,7 +464,7 @@
 
 <div class="viewcode-block" id="convert_to_unit">
 <a class="viewcode-back" href="../../../api/movement.utils.vector.convert_to_unit.html#movement.utils.vector.convert_to_unit">[docs]</a>
-<span class="k">def</span> <span class="nf">convert_to_unit</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_to_unit</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the vectors along the spatial dimension into unit vectors.</span>
 
 <span class="sd">    A unit vector is a vector pointing in the same direction as the original</span>
@@ -489,7 +507,7 @@
 
 <div class="viewcode-block" id="cart2pol">
 <a class="viewcode-back" href="../../../api/movement.utils.vector.cart2pol.html#movement.utils.vector.cart2pol">[docs]</a>
-<span class="k">def</span> <span class="nf">cart2pol</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cart2pol</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform Cartesian coordinates to polar.</span>
 
 <span class="sd">    Parameters</span>
@@ -529,7 +547,7 @@
 
 <div class="viewcode-block" id="pol2cart">
 <a class="viewcode-back" href="../../../api/movement.utils.vector.pol2cart.html#movement.utils.vector.pol2cart">[docs]</a>
-<span class="k">def</span> <span class="nf">pol2cart</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pol2cart</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform polar coordinates to Cartesian.</span>
 
 <span class="sd">    Parameters</span>
@@ -564,13 +582,132 @@
 
 
 
-<span class="k">def</span> <span class="nf">_raise_error_for_missing_spatial_dim</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="n">log_error</span><span class="p">(</span>
-        <span class="ne">ValueError</span><span class="p">,</span>
-        <span class="s2">&quot;Input data array must contain either &#39;space&#39; or &#39;space_pol&#39; &quot;</span>
-        <span class="s2">&quot;as dimensions.&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="compute_signed_angle_2d">
+<a class="viewcode-back" href="../../../api/movement.utils.vector.compute_signed_angle_2d.html#movement.utils.vector.compute_signed_angle_2d">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_signed_angle_2d</span><span class="p">(</span>
+    <span class="n">u</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span>
+    <span class="n">v</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">v_as_left_operand</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the signed angle from the vector ``u`` to the vector ``v``.</span>
+
+<span class="sd">    The signed angle between ``u`` and ``v`` is the rotation that needs to be</span>
+<span class="sd">    applied to ``u`` to have it point in the same direction as ``v`` (see</span>
+<span class="sd">    Notes). Angles are returned in radians, spanning :math:`(-\pi, \pi]`</span>
+<span class="sd">    according to the ``arctan2`` convention.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : xarray.DataArray</span>
+<span class="sd">        An array of position vectors containing the ``space``</span>
+<span class="sd">        dimension with only ``&quot;x&quot;`` and ``&quot;y&quot;`` coordinates.</span>
+<span class="sd">    v : xarray.DataArray | numpy.ndarray</span>
+<span class="sd">        A 2D vector (or array of 2D vectors) against which to</span>
+<span class="sd">        compare ``u``. May either be an xarray</span>
+<span class="sd">        DataArray containing the ``&quot;space&quot;``  dimension or a numpy</span>
+<span class="sd">        array containing one or more 2D vectors. (See Notes)</span>
+<span class="sd">    v_as_left_operand : bool, default False</span>
+<span class="sd">        If True, the signed angle between ``v`` and ``u`` is returned, instead</span>
+<span class="sd">        of the signed angle between ``u`` and ``v``. This is a convenience</span>
+<span class="sd">        wrapper for when one of the two vectors to be used does not have time</span>
+<span class="sd">        points, and the other does.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.DataArray :</span>
+<span class="sd">        An xarray DataArray containing signed angle between</span>
+<span class="sd">        ``u`` and ``v`` for every time point. Matches the dimensions of</span>
+<span class="sd">        ``u``, but without the ``space`` dimension.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Given two vectors :math:`u = (u_x, u_y)` and :math:`v = (v_x, v_y)`,</span>
+<span class="sd">    the signed angle :math:`\alpha` between ``u`` and ``v`` is computed as</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \alpha &amp;= \mathrm{arctan2}(u \times v, u\cdot v) \\</span>
+<span class="sd">        &amp;= \mathrm{arctan2}(u_x v_y - u_y v_x, u_x v_x + u_y v_y),</span>
+
+<span class="sd">    which corresponds to the rotation that needs to be applied to ``u`` for it</span>
+<span class="sd">    to point in the direction of ``v``.</span>
+
+<span class="sd">    If ``v`` is passed as an ``xarray.DataArray``, ``v`` must have spatial</span>
+<span class="sd">    coordinates that match those of ``u``. Furthermore, any dimensions that are</span>
+<span class="sd">    present in both ``u`` and ``v`` must match in length.</span>
+
+<span class="sd">    If passed as a numpy array, ``v`` must have one of three shapes:</span>
+
+<span class="sd">    - ``(2,)``: where dimension ``0`` contains spatial</span>
+<span class="sd">      coordinates (x,y), and no time dimension is specified.</span>
+<span class="sd">    - ``(1,2)``:, where dimension ``0`` corresponds to a</span>
+<span class="sd">      single time-point and dimension ``1`` contains spatial</span>
+<span class="sd">      coordinates (x,y).</span>
+<span class="sd">    - ``(n,2)``: where dimension ``0`` corresponds to</span>
+<span class="sd">      time and dimension ``1`` contains spatial coordinates</span>
+<span class="sd">      (x,y), and where ``n == len(u.time)``.</span>
+
+<span class="sd">    Vectors given as ``v`` that contain more dimensions, or have shapes</span>
+<span class="sd">    otherwise different from those defined above are considered invalid.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">validate_dims_coords</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]},</span> <span class="n">exact_coords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Ensure v can be broadcast over u</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">v_dims</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;space&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">v_dims</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;space&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v must be 1D or 2D, but got </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">D.&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">v</span><span class="p">,</span>
+            <span class="n">dims</span><span class="o">=</span><span class="n">v_dims</span><span class="p">,</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">v_dims</span><span class="p">},</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;v must be an xarray.DataArray or np.ndarray, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">validate_dims_coords</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]},</span> <span class="n">exact_coords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">u</span> <span class="o">=</span> <span class="n">convert_to_unit</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">u_x</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">u_y</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+    <span class="n">v</span> <span class="o">=</span> <span class="n">convert_to_unit</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">v_x</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">v_y</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">space</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+    <span class="n">cross</span> <span class="o">=</span> <span class="n">u_x</span> <span class="o">*</span> <span class="n">v_y</span> <span class="o">-</span> <span class="n">u_y</span> <span class="o">*</span> <span class="n">v_x</span>
+    <span class="k">if</span> <span class="n">v_as_left_operand</span><span class="p">:</span>
+        <span class="n">cross</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">u_x</span> <span class="o">*</span> <span class="n">v_x</span> <span class="o">+</span> <span class="n">u_y</span> <span class="o">*</span> <span class="n">v_y</span>
+
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">cross</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span>
+    <span class="c1"># arctan2 returns values in [-pi, pi].</span>
+    <span class="c1"># We need to map -pi angles to pi, to stay in the (-pi, pi] range</span>
+    <span class="n">angles</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">angles</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="k">return</span> <span class="n">angles</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_raise_error_for_missing_spatial_dim</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+        <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Input data array must contain either &#39;space&#39; or &#39;space_pol&#39; &quot;</span>
+            <span class="s2">&quot;as dimensions.&quot;</span>
+        <span class="p">)</span>
     <span class="p">)</span>
 </pre></div>
+<div class="section ablog__blog_comments">
+   
+</div>
 
                 </article>
               
@@ -599,8 +736,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -614,7 +751,7 @@
     <p class="theme-version">
     Built with the
     <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
-    0.16.0.
+    0.16.1.
     </p></div>
       
     </div>

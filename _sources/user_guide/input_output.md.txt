@@ -4,20 +4,21 @@
 (target-formats)=
 ## Supported formats
 (target-supported-formats)=
-`movement` supports the analysis of trajectories of keypoints (_pose tracks_) and of bounding boxes' centroids (_bounding boxes' tracks_).
+`movement` supports the analysis of trajectories of keypoints (_pose tracks_) and of bounding box centroids (_bounding box tracks_).
 
 To analyse pose tracks, `movement` supports loading data from various frameworks:
 - [DeepLabCut](dlc:) (DLC)
 - [SLEAP](sleap:) (SLEAP)
 - [LightingPose](lp:) (LP)
+- [Anipose](anipose:) (Anipose)
 
-To analyse bounding boxes' tracks, `movement` currently supports the [VGG Image Annotator](via:) (VIA) format for [tracks annotation](via:docs/face_track_annotation.html).
+To analyse bounding box tracks, `movement` currently supports the [VGG Image Annotator](via:) (VIA) format for [tracks annotation](via:docs/face_track_annotation.html).
 
 :::{note}
 At the moment `movement` only deals with tracked data: either keypoints or bounding boxes whose identities are known from one frame to the next, for a consecutive set of frames. For the pose estimation case, this means it only deals with the predictions output by the software packages above. It currently does not support loading manually labelled data (since this is most often defined over a non-continuous set of frames).
 :::
 
-Below we explain how you can load pose tracks and bounding boxes' tracks into `movement`, and how you can export a `movement` poses dataset to different file formats. You can also try `movement` out on some [sample data](target-sample-data)
+Below we explain how you can load pose tracks and bounding box tracks into `movement`, and how you can export a `movement` poses dataset to different file formats. You can also try `movement` out on some [sample data](target-sample-data)
 included with the package.
 
 
@@ -84,6 +85,22 @@ ds = load_poses.from_file(
 ```
 :::
 
+:::{tab-item} Anipose
+
+To load Anipose files in .csv format:
+```python
+ds = load_poses.from_anipose_file(
+    "/path/to/file.analysis.csv", fps=30, individual_name="individual_0"
+)  # We can optionally specify the individual name, by default it is "individual_0"
+
+# or equivalently
+ds = load_poses.from_file(
+    "/path/to/file.analysis.csv", source_software="Anipose", fps=30, individual_name="individual_0"
+)
+
+```
+:::
+
 :::{tab-item} From NumPy
 
 In the example below, we create random position data for two individuals, ``Alice`` and ``Bob``,
@@ -93,8 +110,8 @@ with three keypoints each: ``snout``, ``centre``, and ``tail_base``. These keypo
 import numpy as np
 
 ds = load_poses.from_numpy(
-    position_array=np.random.rand((100, 2, 3, 2)),
-    confidence_array=np.ones((100, 2, 3)),
+    position_array=np.random.rand(100, 2, 3, 2),
+    confidence_array=np.ones((100, 3, 2)),
     individual_names=["Alice", "Bob"],
     keypoint_names=["snout", "centre", "tail_base"],
     fps=30,
@@ -112,15 +129,15 @@ For more information on the poses data structure, see the [movement poses datase
 
 
 (target-loading-bbox-tracks)=
-## Loading bounding boxes' tracks
-To load bounding boxes' tracks into a [movement bounding boxes dataset](target-poses-and-bboxes-dataset), we need the functions from the
+## Loading bounding box tracks
+To load bounding box tracks into a [movement bounding boxes dataset](target-poses-and-bboxes-dataset), we need the functions from the
 {mod}`movement.io.load_bboxes` module. This module can be imported as:
 
 ```python
 from movement.io import load_bboxes
 ```
 
-We currently support loading bounding boxes' tracks in the VGG Image Annotator (VIA) format only. However, like in the poses datasets, we additionally provide a `from_numpy()` method, with which we can build a [movement bounding boxes dataset](target-poses-and-bboxes-dataset) from a set of NumPy arrays.
+We currently support loading bounding box tracks in the VGG Image Annotator (VIA) format only. However, like in the poses datasets, we additionally provide a `from_numpy()` method, with which we can build a [movement bounding boxes dataset](target-poses-and-bboxes-dataset) from a set of NumPy arrays.
 
 ::::{tab-set}
 :::{tab-item} VGG Image Annotator
@@ -230,15 +247,15 @@ save_poses.to_dlc_file(ds, "/path/to/file.csv", split_individuals=True)
 
 
 (target-saving-bboxes-tracks)=
-## Saving bounding boxes' tracks
+## Saving bounding box tracks
 
-We currently do not provide explicit methods to export a movement bounding boxes dataset in a specific format. However, you can easily save the bounding boxes' trajectories to a .csv file using the standard Python library `csv`.
+We currently do not provide explicit methods to export a movement bounding boxes dataset in a specific format. However, you can easily save the bounding box tracks to a .csv file using the standard Python library `csv`.
 
 Here is an example of how you can save a bounding boxes dataset to a .csv file:
 
 ```python
 # define name for output csv file
-file = 'tracking_output.csv"
+filepath = "tracking_output.csv"
 
 # open the csv file in write mode
 with open(filepath, mode="w", newline="") as file:
@@ -256,14 +273,14 @@ with open(filepath, mode="w", newline="") as file:
             writer.writerow([frame, individual, x, y, width, height, confidence])
 
 ```
-Alternatively, we can convert the `movement` bounding boxes' dataset to a pandas DataFrame with the {func}`.xarray.DataArray.to_dataframe()` method, wrangle the dataframe as required, and then apply the {func}`.pandas.DataFrame.to_csv()` method to save the data as a .csv file.
+Alternatively, we can convert the `movement` bounding boxes dataset to a pandas DataFrame with the {meth}`xarray.DataArray.to_dataframe` method, wrangle the dataframe as required, and then apply the {meth}`pandas.DataFrame.to_csv` method to save the data as a .csv file.
 
 
 (target-sample-data)=
 ## Sample data
 
 `movement` includes some sample data files that you can use to
-try the package out. These files contain pose and bounding boxes' tracks from
+try the package out. These files contain pose and bounding box tracks from
 various [supported formats](target-supported-formats).
 
 You can list the available sample data files using:
@@ -296,7 +313,7 @@ ds = sample_data.fetch_dataset(filename, with_video=True)
 
 If available, the video file is downloaded and its path is stored
 in the `video_path` attribute of the dataset (i.e., `ds.video_path`).
-The value of this attribute is `None` if no video file is
+This attribute will not be set if no video is
 available for this dataset, or if you did not request it.
 
 Some datasets also include a sample frame file, which is a single
@@ -305,7 +322,7 @@ still frame extracted from the video. This can be useful for visualisation
 this file is always downloaded when fetching the dataset,
 and its path is stored in the `frame_path` attribute
 (i.e., `ds.frame_path`). If no frame file is available for the dataset,
- `ds.frame_path=None`.
+the `frame_path` attribute will not be set.
 
 :::{dropdown} Under the hood
 :color: info

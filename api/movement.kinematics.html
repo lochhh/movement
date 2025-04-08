@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,11 +27,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5dc116f1" />
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5c7c04c7" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -39,26 +39,28 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=6aee1ebc"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/movement.kinematics';</script>
     <link rel="canonical" href="https://movement.neuroinformatics.dev/api/movement.kinematics.html" />
     <link rel="icon" href="../_static/light-logo-niu.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="compute_acceleration" href="movement.kinematics.compute_acceleration.html" />
-    <link rel="prev" title="to_sleap_analysis_file" href="movement.io.save_poses.to_sleap_analysis_file.html" />
+    <link rel="prev" title="to_sleap_analysis_file" href="movement.io.save_poses.to_sleap_analysis_file.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="" />   
   </head>
   
   
@@ -158,6 +160,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api_index.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
   </a>
 </li>
 
@@ -289,6 +298,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -349,6 +365,7 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.filter_by_confidence.html">filter_by_confidence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.interpolate_over_time.html">interpolate_over_time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.median_filter.html">median_filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.filtering.rolling_filter.html">rolling_filter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.filtering.savgol_filter.html">savgol_filter</a></li>
 </ul>
 </details></li>
@@ -359,6 +376,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.io.load_poses.html">movement.io.load_poses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_anipose_file.html">from_anipose_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_anipose_style_df.html">from_anipose_style_df</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_dlc_file.html">from_dlc_file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_dlc_style_df.html">from_dlc_style_df</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.io.load_poses.from_file.html">from_file</a></li>
@@ -379,6 +398,7 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_acceleration.html">compute_acceleration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_displacement.html">compute_displacement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_forward_vector.html">compute_forward_vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_forward_vector_angle.html">compute_forward_vector_angle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_head_direction_vector.html">compute_head_direction_vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_pairwise_distances.html">compute_pairwise_distances</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_path_length.html">compute_path_length</a></li>
@@ -387,17 +407,60 @@
 <li class="toctree-l2"><a class="reference internal" href="movement.kinematics.compute_velocity.html">compute_velocity</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.napari.convert.html">movement.napari.convert</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.convert.ds_to_napari_tracks.html">ds_to_napari_tracks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.napari.layer_styles.html">movement.napari.layer_styles</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.layer_styles.LayerStyle.html">LayerStyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.napari.layer_styles.PointsStyle.html">PointsStyle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.plots.occupancy.html">movement.plots.occupancy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.plots.occupancy.plot_occupancy.html">plot_occupancy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.plots.trajectory.html">movement.plots.trajectory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.plots.trajectory.plot_centroid_trajectory.html">plot_centroid_trajectory</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.base.html">movement.roi.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.base.BaseRegionOfInterest.html">BaseRegionOfInterest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.conditions.html">movement.roi.conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.conditions.compute_region_occupancy.html">compute_region_occupancy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.line.html">movement.roi.line</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.line.LineOfInterest.html">LineOfInterest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.roi.polygon.html">movement.roi.polygon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.roi.polygon.PolygonOfInterest.html">PolygonOfInterest</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.sample_data.html">movement.sample_data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.fetch_dataset.html">fetch_dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.fetch_dataset_paths.html">fetch_dataset_paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.sample_data.list_datasets.html">list_datasets</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.transforms.html">movement.transforms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.transforms.scale.html">scale</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.broadcasting.html">movement.utils.broadcasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.apply_along_da_axis.html">apply_along_da_axis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.broadcastable_method.html">broadcastable_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.make_broadcastable.html">make_broadcastable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.broadcasting.space_broadcastable.html">space_broadcastable</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.logging.html">movement.utils.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.configure_logging.html">configure_logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_error.html">log_error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.MovementLogger.html">MovementLogger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_to_attrs.html">log_to_attrs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.log_warning.html">log_warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.logging.showwarning.html">showwarning</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.reports.html">movement.utils.reports</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -408,6 +471,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.utils.vector.html">movement.utils.vector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.cart2pol.html">cart2pol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.compute_norm.html">compute_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.compute_signed_angle_2d.html">compute_signed_angle_2d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.convert_to_unit.html">convert_to_unit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.utils.vector.pol2cart.html">pol2cart</a></li>
 </ul>
@@ -422,6 +486,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="movement.validators.files.html">movement.validators.files</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidAniposeCSV.html">ValidAniposeCSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidDeepLabCutCSV.html">ValidDeepLabCutCSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidFile.html">ValidFile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="movement.validators.files.ValidHDF5.html">ValidHDF5</a></li>
@@ -435,9 +500,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -482,8 +552,7 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-  <section id="movement-kinematics">
+                   <section id="movement-kinematics">
 <h1>movement.kinematics<a class="headerlink" href="#movement-kinematics" title="Link to this heading">#</a></h1>
 <p class="rubric">Description</p>
 <p id="module-movement.kinematics">Compute kinematic variables like velocity and acceleration.</p>
@@ -499,22 +568,25 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_forward_vector.html#movement.kinematics.compute_forward_vector" title="movement.kinematics.compute_forward_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_forward_vector</span></code></a></p></td>
 <td><p>Compute a 2D forward vector given two left-right symmetric keypoints.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_head_direction_vector.html#movement.kinematics.compute_head_direction_vector" title="movement.kinematics.compute_head_direction_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_head_direction_vector</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_forward_vector_angle.html#movement.kinematics.compute_forward_vector_angle" title="movement.kinematics.compute_forward_vector_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_forward_vector_angle</span></code></a></p></td>
+<td><p>Compute the signed angle between a reference and a forward vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_head_direction_vector.html#movement.kinematics.compute_head_direction_vector" title="movement.kinematics.compute_head_direction_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_head_direction_vector</span></code></a></p></td>
 <td><p>Compute the 2D head direction vector given two keypoints on the head.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances" title="movement.kinematics.compute_pairwise_distances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pairwise_distances</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances" title="movement.kinematics.compute_pairwise_distances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pairwise_distances</span></code></a></p></td>
 <td><p>Compute pairwise distances between <code class="docutils literal notranslate"><span class="pre">individuals</span></code> or <code class="docutils literal notranslate"><span class="pre">keypoints</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_path_length.html#movement.kinematics.compute_path_length" title="movement.kinematics.compute_path_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_path_length</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_path_length.html#movement.kinematics.compute_path_length" title="movement.kinematics.compute_path_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_path_length</span></code></a></p></td>
 <td><p>Compute the length of a path travelled between two time points.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_speed.html#movement.kinematics.compute_speed" title="movement.kinematics.compute_speed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_speed</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_speed.html#movement.kinematics.compute_speed" title="movement.kinematics.compute_speed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_speed</span></code></a></p></td>
 <td><p>Compute instantaneous speed at each time point.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_time_derivative.html#movement.kinematics.compute_time_derivative" title="movement.kinematics.compute_time_derivative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_time_derivative</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_time_derivative.html#movement.kinematics.compute_time_derivative" title="movement.kinematics.compute_time_derivative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_time_derivative</span></code></a></p></td>
 <td><p>Compute the time-derivative of an array using numerical differentiation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="movement.kinematics.compute_velocity.html#movement.kinematics.compute_velocity" title="movement.kinematics.compute_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_velocity</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="movement.kinematics.compute_velocity.html#movement.kinematics.compute_velocity" title="movement.kinematics.compute_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_velocity</span></code></a></p></td>
 <td><p>Compute velocity array in cartesian coordinates.</p></td>
 </tr>
 </tbody>
@@ -522,6 +594,9 @@
 </div>
 </section>
 
+<div class="section ablog__blog_comments">
+   
+</div>
 
                 </article>
               
@@ -562,13 +637,13 @@
 
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/api/movement.kinematics.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/movement.kinematics.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -583,8 +658,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -598,7 +673,7 @@
     <p class="theme-version">
     Built with the
     <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
-    0.16.0.
+    0.16.1.
     </p></div>
       
     </div>

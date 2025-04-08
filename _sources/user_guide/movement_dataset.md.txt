@@ -1,14 +1,14 @@
 (target-poses-and-bboxes-dataset)=
 # The movement datasets
 
-In `movement`, poses or bounding boxes' tracks are represented
+In `movement`, poses or bounding box tracks are represented
 as an {class}`xarray.Dataset` object.
 
 An {class}`xarray.Dataset` object is a container for multiple arrays. Each array is an {class}`xarray.DataArray` object holding different aspects of the collected data (position, time, confidence scores...). You can think of a {class}`xarray.DataArray` object as a multi-dimensional {class}`numpy.ndarray`
 with pandas-style indexing and labelling.
 
 So a `movement` dataset is simply an {class}`xarray.Dataset` with a specific
-structure to represent pose tracks or bounding boxes' tracks. Because pose data and bounding boxes data are somewhat different, `movement` provides two types of datasets: `poses` datasets and `bboxes` datasets.
+structure to represent pose tracks or bounding box tracks. Because pose data and bounding box data are somewhat different, `movement` provides two types of datasets: `poses` datasets and `bboxes` datasets.
 
 To discuss the specifics of both types of `movement` datasets, it is useful to clarify some concepts such as **data variables**, **dimensions**,
 **coordinates** and **attributes**. In the next section, we will describe these concepts and the `movement` datasets' structure in some detail.
@@ -43,15 +43,15 @@ print(ds)
 and we would obtain an output such as:
 ```
 <xarray.Dataset> Size: 27kB
-Dimensions:      (time: 601, individuals: 3, keypoints: 1, space: 2)
+Dimensions:      (time: 601, space: 2, keypoints: 1, individuals: 3)
 Coordinates:
   * time         (time) float64 5kB 0.0 0.02 0.04 0.06 ... 11.96 11.98 12.0
-  * individuals  (individuals) <U10 120B 'AEON3B_NTP' 'AEON3B_TP1' 'AEON3B_TP2'
-  * keypoints    (keypoints) <U8 32B 'centroid'
   * space        (space) <U1 8B 'x' 'y'
+  * keypoints    (keypoints) <U8 32B 'centroid'
+  * individuals  (individuals) <U10 120B 'AEON3B_NTP' 'AEON3B_TP1' 'AEON3B_TP2'
 Data variables:
-    position     (time, individuals, keypoints, space) float32 14kB 770.3 ......
-    confidence   (time, individuals, keypoints) float32 7kB nan nan ... nan nan
+    position     (time, space, keypoints, individuals) float32 14kB 770.3 ......
+    confidence   (time, keypoints, individuals) float32 7kB nan nan ... nan nan
 Attributes:
     fps:              50.0
     time_unit:        seconds
@@ -59,13 +59,12 @@ Attributes:
     source_file:      /home/user/.movement/data/poses/SLEAP_three-mice_Aeon...
     ds_type:          poses
     frame_path:       /home/user/.movement/data/frames/three-mice_Aeon_fram...
-    video_path:       None
 ```
 
 :::
 
-:::{tab-item} Bounding boxes' dataset
-To inspect a sample bounding boxes' dataset, we can run:
+:::{tab-item} Bounding boxes dataset
+To inspect a sample bounding boxes dataset, we can run:
 ```python
 from movement import sample_data
 
@@ -78,23 +77,20 @@ print(ds)
 and the last command would print out:
 ```
 <xarray.Dataset> Size: 19kB
-Dimensions:      (time: 5, individuals: 86, space: 2)
+Dimensions:      (time: 5, space: 2, individuals: 86)
 Coordinates:
   * time         (time) int64 40B 0 1 2 3 4
-  * individuals  (individuals) <U5 2kB 'id_1' 'id_2' 'id_3' ... 'id_89' 'id_90'
   * space        (space) <U1 8B 'x' 'y'
+  * individuals  (individuals) <U5 2kB 'id_1' 'id_2' 'id_3' ... 'id_89' 'id_90'
 Data variables:
-    position     (time, individuals, space) float64 7kB 871.8 ... 905.3
-    shape        (time, individuals, space) float64 7kB 60.0 53.0 ... 51.0 36.0
+    position     (time, space, individuals) float64 7kB 901.8 ... 923.3
+    shape        (time, space, individuals) float64 7kB 60.0 30.0 ... 72.0 36.0
     confidence   (time, individuals) float64 3kB nan nan nan nan ... nan nan nan
 Attributes:
-    fps:              None
     time_unit:        frames
     source_software:  VIA-tracks
     source_file:      /home/user/.movement/data/bboxes/VIA_multiple-crabs_5...
     ds_type:          bboxes
-    frame_path:       None
-    video_path:       None
 ```
 :::
 
@@ -114,32 +110,32 @@ the labelled "ticks" along each axis are called **coordinates** (`coords`).
 :::{tab-item} Poses dataset
 A `movement` poses dataset has the following **dimensions**:
 - `time`, with size equal to the number of frames in the video.
-- `individuals`, with size equal to the number of tracked individuals/instances.
-- `keypoints`, with size equal to the number of tracked keypoints per individual.
 - `space`, which is the number of spatial dimensions. Currently, we support only 2D poses.
+- `keypoints`, with size equal to the number of tracked keypoints per individual.
+- `individuals`, with size equal to the number of tracked individuals/instances.
 :::
 
-:::{tab-item} Bounding boxes' dataset
+:::{tab-item} Bounding boxes dataset
 A `movement` bounding boxes dataset has the following **dimensions**s:
 - `time`, with size equal to the number of frames in the video.
-- `individuals`, with size equal to the number of tracked individuals/instances.
 - `space`, which is the number of spatial dimensions. Currently, we support only 2D bounding boxes data.
+- `individuals`, with size equal to the number of tracked individuals/instances.
 Notice that these are the same dimensions as for a poses dataset, except for the `keypoints` dimension.
 :::
 ::::
 
 In both cases, appropriate **coordinates** are assigned to each **dimension**.
-- `individuals` are labelled with a list of unique names (e.g. `mouse1`, `mouse2`, etc. or `id_0`, `id_1`, etc.).
-- `keypoints` are likewise labelled with a list of unique body part names, e.g. `snout`, `right_ear`, etc. Note that this dimension only exists in the poses dataset.
-- `space` is labelled with either `x`, `y` (2D) or `x`, `y`, `z` (3D). Note that bounding boxes datasets are restricted to 2D space.
 - `time` is labelled in seconds if `fps` is provided, otherwise the **coordinates** are expressed in frames (ascending 0-indexed integers).
+- `space` is labelled with either `x`, `y` (2D) or `x`, `y`, `z` (3D). Note that bounding boxes datasets are restricted to 2D space.
+- `keypoints` are likewise labelled with a list of unique body part names, e.g. `snout`, `right_ear`, etc. Note that this dimension only exists in the poses dataset.
+- `individuals` are labelled with a list of unique names (e.g. `mouse1`, `mouse2`, etc. or `id_0`, `id_1`, etc.).
 
 :::{dropdown} Additional dimensions
 :color: info
 :icon: info
 The above **dimensions** and **coordinates** are created
 by default when loading a `movement` dataset from a single
-file containing pose or bounding boxes tracks.
+file containing pose or bounding box tracks.
 
 In some cases, you may encounter or create datasets with extra
 **dimensions**. For example, the
@@ -156,14 +152,14 @@ The specific data variables stored are slightly different between a `movement` p
 ::::{tab-set}
 :::{tab-item} Poses dataset
 A `movement` poses dataset contains two **data variables**:
-- `position`: the 2D or 3D locations of the keypoints over time, with shape (`time`, `individuals`, `keypoints`, `space`).
-- `confidence`: the confidence scores associated with each predicted keypoint (as reported by the pose estimation model), with shape (`time`, `individuals`, `keypoints`).
+- `position`: the 2D or 3D locations of the keypoints over time, with shape (`time`, `space`, `keypoints`, `individuals`).
+- `confidence`: the confidence scores associated with each predicted keypoint (as reported by the pose estimation model), with shape (`time`, `keypoints`, `individuals`).
 :::
 
-:::{tab-item} Bounding boxes' dataset
+:::{tab-item} Bounding boxes dataset
 A `movement` bounding boxes dataset contains three **data variables**:
-- `position`: the 2D locations of the bounding boxes' centroids over time, with shape (`time`, `individuals`, `space`).
-- `shape`: the width and height of the bounding boxes over time, with shape (`time`, `individuals`, `space`).
+- `position`: the 2D locations of the bounding box centroids over time, with shape (`time`, `space`, `individuals`).
+- `shape`: the width and height of the bounding boxes over time, with shape (`time`, `space`, `individuals`).
 - `confidence`: the confidence scores associated with each predicted bounding box, with shape (`time`, `individuals`).
 :::
 ::::
@@ -177,10 +173,10 @@ share some common **dimensions**.
 Both poses and bounding boxes datasets in `movement` have associated metadata. These can be stored as dataset **attributes** (i.e. inside the specially designated `attrs` dictionary) in the form of key-value pairs.
 
 Right after loading a `movement` dataset, the following **attributes** are created:
-- `fps`: the number of frames per second in the video. If not provided, it is set to `None`.
+- `fps`: the number of frames per second in the video (absent if not provided by the user during loading).
 - `time_unit`: the unit of the `time` **coordinates** (either `frames` or `seconds`).
-- `source_software`: the software that produced the pose or bounding boxes tracks.
-- `source_file`: the path to the file from which the data were loaded.
+- `source_software`: the software that produced the pose or bounding box tracks.
+- `source_file`: the path to the file from which the data were loaded (absent if the dataset was not loaded from a file).
 - `ds_type`: the type of dataset loaded (either `poses` or `bboxes`).
 
 Some of the [sample datasets](target-sample-data) provided with

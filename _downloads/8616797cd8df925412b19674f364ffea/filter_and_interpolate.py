@@ -70,24 +70,32 @@ ds.confidence.squeeze().plot.line(
 # %%
 # Encouragingly, some of the drops in confidence scores do seem to correspond
 # to the implausible jumps and spikes we had seen in the position.
-# We can use that to our advantage.
+# We can use that to our advantage, by leveraging functions from the
+# :mod:`movement.filtering` module.
 
 # %%
 # Filter out points with low confidence
 # -------------------------------------
-# Using the :func:`movement.filtering.filter_by_confidence` function from the
-# :mod:`movement.filtering` module, we can filter out points with confidence
-# scores below a certain threshold. This function takes ``position`` and
-# ``confidence`` as required arguments, and accepts an optional ``threshold``
-# parameter, which defaults to ``threshold=0.6`` unless specified otherwise.
-# The function will also report the number of NaN values in the dataset before
-# and after the filtering operation by default, but you can disable this
-# by passing ``print_report=False``.
+# Using :func:`movement.filtering.filter_by_confidence`,
+# we can filter out points with confidence scores below a certain threshold.
+# This function takes ``position`` and ``confidence`` as required arguments,
+# and accepts an optional ``threshold`` parameter,
+# which defaults to ``threshold=0.6`` unless specified otherwise.
+# Setting ``print_report=True``, will make the function print a report
+# on the number of NaN values before and after the filtering operation.
+# This is ``False`` by default, but can be useful for understanding
+# and debugging the impact of filtering on the data.
 #
 # We will use :meth:`xarray.Dataset.update` to update ``ds`` in-place
 # with the filtered ``position``.
 
-ds.update({"position": filter_by_confidence(ds.position, ds.confidence)})
+ds.update(
+    {
+        "position": filter_by_confidence(
+            ds.position, ds.confidence, print_report=True
+        )
+    }
+)
 
 # %%
 # We can see that the filtering operation has introduced NaN values in the
@@ -106,25 +114,42 @@ ds.position.squeeze().plot.line(
 # %%
 # Interpolate over missing values
 # -------------------------------
-# Using the :func:`movement.filtering.interpolate_over_time` function from the
-# :mod:`movement.filtering` module, we can interpolate over gaps
-# we've introduced in the pose tracks.
-# Here we use the default linear interpolation method (``method=linear``)
+# Using  :func:`movement.filtering.interpolate_over_time`, we can
+# interpolate over gaps we've introduced in the pose tracks.
+# Here we use the default linear interpolation method (``method="linear"``)
 # and interpolate over gaps of 40 frames or less (``max_gap=40``).
 # The default ``max_gap=None`` would interpolate over all gaps, regardless of
 # their length, but this should be used with caution as it can introduce
 # spurious data. The ``print_report`` argument acts as described above.
 
-ds.update({"position": interpolate_over_time(ds.position, max_gap=40)})
+ds.update(
+    {
+        "position": interpolate_over_time(
+            ds.position, max_gap=40, print_report=True
+        )
+    }
+)
 
 # %%
-# We see that all NaN values have disappeared, meaning that all gaps were
-# indeed shorter than 40 frames.
+# We see that most, but not all, NaN values have disappeared, meaning that
+# most gaps were indeed shorter than 40 frames.
 # Let's visualise the interpolated pose tracks.
 
 ds.position.squeeze().plot.line(
     x="time", row="keypoints", hue="space", aspect=2, size=2.5
 )
+
+# %%
+# .. note::
+#   By default, interpolation does not apply to gaps at either end of the time
+#   series. In our case, the last few frames removed by filtering were not
+#   replaced by interpolation. Passing ``fill_value="extrapolate"`` to the
+#   :func:`interpolate_over_time()<movement.filtering.interpolate_over_time>`
+#   function would extrapolate the data to also fill the gaps at either end.
+#
+#   In general, you may pass any keyword arguments that are acceptable as
+#   ``**kwargs`` by :meth:`xarray.DataArray.interpolate_na`, which in turn
+#   passes them to its underlying interpolation methods.
 
 # %%
 # Log of processing steps
@@ -158,7 +183,7 @@ ds["velocity"] = compute_velocity(ds.position)
 # Create a dictionary mapping data variable names to filtered DataArrays
 # We disable report printing for brevity
 update_dict = {
-    var: filter_by_confidence(ds[var], ds.confidence, print_report=False)
+    var: filter_by_confidence(ds[var], ds.confidence)
     for var in ["position", "velocity"]
 }
 

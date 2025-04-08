@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,11 +27,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5dc116f1" />
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5c7c04c7" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=6aee1ebc"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -55,10 +55,10 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Mission &amp; Scope" href="mission-scope.html" />
-    <link rel="prev" title="Express 2D vectors in polar coordinates" href="../examples/compute_polar_coordinates.html" />
+    <link rel="prev" title="Extend your analysis methods along data dimensions" href="../examples/broadcasting_your_own_methods.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="" />   
   </head>
   
   
@@ -158,6 +158,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../api_index.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
   </a>
 </li>
 
@@ -289,6 +296,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -347,6 +361,7 @@
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mission-scope.html">Mission &amp; Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmaps.html">Roadmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="people.html">People</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">How to Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related-projects.html">Related projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -357,9 +372,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -401,21 +421,28 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-  <section class="tex2jax_ignore mathjax_ignore" id="community">
+                   <section class="tex2jax_ignore mathjax_ignore" id="community">
 <h1>Community<a class="headerlink" href="#community" title="Link to this heading">#</a></h1>
-<p>Contributions to <code class="docutils literal notranslate"><span class="pre">movement</span></code> are absolutely encouraged, whether to fix a bug,
-develop a new feature, or improve the documentation.
+<p><code class="docutils literal notranslate"><span class="pre">movement</span></code> is a community-driven project, made possible by the generous contributions of <a class="reference internal" href="people.html#target-people"><span class="std std-ref">many people</span></a>.
+We welcome and encourage contributions in any form—whether it is fixing a bug,
+developing a new feature, or improving the documentation.
 To help you get started, we have prepared a statement on the project’s <a class="reference internal" href="mission-scope.html#target-mission"><span class="std std-ref">mission and scope</span></a>,
 a <a class="reference internal" href="roadmaps.html#target-roadmaps"><span class="std std-ref">roadmap</span></a> outlining our current priorities, and a detailed <a class="reference internal" href="contributing.html#target-contributing"><span class="std std-ref">contributing guide</span></a>.</p>
-<div class="admonition-get-in-touch admonition">
+<div class="admonition-get-in-touch admonition" id="target-get-in-touch">
 <p class="admonition-title">Get in touch</p>
-<p>You are welcome to chat with the team on <a class="reference external" href="https://neuroinformatics.zulipchat.com/#narrow/stream/406001-Movement">Zulip</a>. You can also <a class="reference external" href="https://github.com/neuroinformatics-unit/movement/issues">open an issue</a> to report a bug or request a new feature.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://neuroinformatics.zulipchat.com/#narrow/stream/406001-Movement">Chat with the team on Zulip</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/neuroinformatics-unit/movement/issues">Open an issue</a> to report a bug or request a new feature.</p></li>
+<li><p><a class="reference external" href="https://neuroinformatics.zulipchat.com/#narrow/channel/406001-Movement/topic/Community.20Calls">Follow this Zulip topic</a> to receive updates about upcoming Community Calls.</p></li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
 
+<div class="section ablog__blog_comments">
+   
+</div>
 
                 </article>
               
@@ -427,12 +454,12 @@ a <a class="reference internal" href="roadmaps.html#target-roadmaps"><span class
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../examples/compute_polar_coordinates.html"
+       href="../examples/broadcasting_your_own_methods.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Express 2D vectors in polar coordinates</p>
+        <p class="prev-next-title">Extend your analysis methods along data dimensions</p>
       </div>
     </a>
     <a class="right-next"
@@ -456,13 +483,13 @@ a <a class="reference internal" href="roadmaps.html#target-roadmaps"><span class
 
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/community/index.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/community/index.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -477,8 +504,8 @@ a <a class="reference internal" href="roadmaps.html#target-roadmaps"><span class
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -492,7 +519,7 @@ a <a class="reference internal" href="roadmaps.html#target-roadmaps"><span class
     <p class="theme-version">
     Built with the
     <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
-    0.16.0.
+    0.16.1.
     </p></div>
       
     </div>
