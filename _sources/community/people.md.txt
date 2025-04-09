@@ -12,6 +12,7 @@ The current active core development team is composed of:
 - [Sofía Miñano](https://github.com/sfmig)
 
 ## Contributors
+:::contributors-table
 <!-- readme: contributors -start -->
 <table>
 	<tbody>
@@ -51,6 +52,8 @@ The current active core development team is composed of:
                     <sub><b>Will Graham</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/stellaprins">
                     <img src="https://avatars.githubusercontent.com/u/30465823?v=4" width="100;" alt="stellaprins"/>
@@ -58,8 +61,6 @@ The current active core development team is composed of:
                     <sub><b>Stella</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/b-peri">
                     <img src="https://avatars.githubusercontent.com/u/77279592?v=4" width="100;" alt="b-peri"/>
@@ -88,6 +89,8 @@ The current active core development team is composed of:
                     <sub><b>Luigi Petrucco</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/harsh-bhanushali-05">
                     <img src="https://avatars.githubusercontent.com/u/109029538?v=4" width="100;" alt="harsh-bhanushali-05"/>
@@ -102,8 +105,6 @@ The current active core development team is composed of:
                     <sub><b>Igor Tatarnikov</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/Kasra-Shirvanian">
                     <img src="https://avatars.githubusercontent.com/u/164632798?v=4" width="100;" alt="Kasra-Shirvanian"/>
@@ -125,6 +126,8 @@ The current active core development team is composed of:
                     <sub><b>Lauraschwarz</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/angkul07">
                     <img src="https://avatars.githubusercontent.com/u/129066458?v=4" width="100;" alt="angkul07"/>
@@ -143,6 +146,7 @@ The current active core development team is composed of:
 	<tbody>
 </table>
 <!-- readme: contributors -end -->
+:::
 
 ## Funders
 `movement` is made possible thanks to grant funding and the generous support of our host institutions:
