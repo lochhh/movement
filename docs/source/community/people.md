@@ -143,10 +143,77 @@ The current active core development team is composed of:
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/sepidak">
+                    <img src="https://avatars.githubusercontent.com/u/28627358?v=4" width="100;" alt="sepidak"/>
+                    <br />
+                    <sub><b>sepidak</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/sannatitus">
+                    <img src="https://avatars.githubusercontent.com/u/100142813?v=4" width="100;" alt="sannatitus"/>
+                    <br />
+                    <sub><b>Sanna Eriksson Titus</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lkatsouri">
+                    <img src="https://avatars.githubusercontent.com/u/36635672?v=4" width="100;" alt="lkatsouri"/>
+                    <br />
+                    <sub><b>Loukia Katsouri</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/athenaakrami">
+                    <img src="https://avatars.githubusercontent.com/u/25442928?v=4" width="100;" alt="athenaakrami"/>
+                    <br />
+                    <sub><b>Athena Akrami</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/dimokaramanlis">
+                    <img src="https://avatars.githubusercontent.com/u/1114242?v=4" width="100;" alt="dimokaramanlis"/>
+                    <br />
+                    <sub><b>Dimokratis Karamanlis</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/shailajaakella">
+                    <img src="https://avatars.githubusercontent.com/u/68871896?v=4" width="100;" alt="shailajaakella"/>
+                    <br />
+                    <sub><b>shailajaakella</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/mehulrastogi">
+                    <img src="https://avatars.githubusercontent.com/u/22076299?v=4" width="100;" alt="mehulrastogi"/>
+                    <br />
+                    <sub><b>Mehul Rastogi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/neuroduan">
+                    <img src="https://avatars.githubusercontent.com/u/32085285?v=4" width="100;" alt="neuroduan"/>
+                    <br />
+                    <sub><b>Ann Duan</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/roaldarbol">
+                    <img src="https://avatars.githubusercontent.com/u/25629697?v=4" width="100;" alt="roaldarbol"/>
+                    <br />
+                    <sub><b>Mikkel Roald-Arbøl</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://www.sainsburywellcome.org/web/people/dammy-onih">
                     <img src="https://www.sainsburywellcome.org/web/sites/default/files/styles/thumbnail_scale_and_crop/public/2018-12/dammy.jpg" width="100;" alt="dammyonih"/>
                     <br />
-                    <sub><b>Dammy Onih</b></sub> <!-- manually added -->
+                    <sub><b>Dammy Onih</b></sub> <!-- Manually added -->
                 </a>
             </td>
 		</tr>
