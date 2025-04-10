@@ -209,13 +209,6 @@ The current active core development team is composed of:
                     <sub><b>Mikkel Roald-Arbøl</b></sub>
                 </a>
             </td>
-            <td align="center">
-                <a href="https://www.sainsburywellcome.org/web/people/dammy-onih">
-                    <img src="https://www.sainsburywellcome.org/web/sites/default/files/styles/thumbnail_scale_and_crop/public/2018-12/dammy.jpg" width="100;" alt="dammyonih"/>
-                    <br />
-                    <sub><b>Dammy Onih</b></sub> <!-- Manually added -->
-                </a>
-            </td>
 		</tr>
 	<tbody>
 </table>
