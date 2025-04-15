@@ -6,14 +6,24 @@
 [Sainsbury Wellcome Centre](https://www.sainsburywellcome.org/web/) by [Niko Sirmpilatze](https://github.com/niksirbi) and
 [Adam Tyson](https://github.com/adamltyson).
 The current active core development team is composed of:
-- [Adam Tyson](https://github.com/adamltyson)
 - [Niko Sirmpilatze](https://github.com/niksirbi)
 - [Chang Huan Lo](https://github.com/lochhh)
 - [Sofía Miñano](https://github.com/sfmig)
 
+## Collaborations
+We are eager to explore collaboration opportunities with research labs and research software engineering teams.
+Our current and past collaborations include:
+- [Keshavarzi Laboratory](https://www.keshavarzilab.com/) at the University of Cambridge
+- [UCL Advanced Research Computing Centre](https://www.ucl.ac.uk/advanced-research-computing/advanced-research-computing-centre)
+
+(target-contributors)=
 ## Contributors
-:::contributors-table
-<!-- readme: contributors,Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -start -->
+:::::contributors-table
+<!-- ======================= AUTO: REPOSITORY CONTRIBUTORS =======================
+This section contains contributors who have committed to the movement repository.
+This is automatically updated via GitHub Actions and should not be modified.
+=============================================================================== -->
+<!-- readme: contributors -start -->
 <table>
 	<tbody>
 		<tr>
@@ -142,6 +152,20 @@ The current active core development team is composed of:
                     <sub><b>Iván V</b></sub>
                 </a>
             </td>
+		</tr>
+	<tbody>
+</table>
+<!-- readme: contributors -end -->
+
+<!-- ===================== MANUAL: OTHER GITHUB CONTRIBUTORS =====================
+This section contains other manually added contributors (on GitHub) who have not
+contributed to the movement repository, but have contributed in other ways (e.g. by
+providing sample data, or by actively participating in discussions).
+=============================================================================== -->
+<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -start -->
+<table>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/sepidak">
                     <img src="https://avatars.githubusercontent.com/u/28627358?v=4" width="100;" alt="sepidak"/>
@@ -163,8 +187,6 @@ The current active core development team is composed of:
                     <sub><b>Loukia Katsouri</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/athenaakrami">
                     <img src="https://avatars.githubusercontent.com/u/25442928?v=4" width="100;" alt="athenaakrami"/>
@@ -179,6 +201,8 @@ The current active core development team is composed of:
                     <sub><b>Dimokratis Karamanlis</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/shailajaakella">
                     <img src="https://avatars.githubusercontent.com/u/68871896?v=4" width="100;" alt="shailajaakella"/>
@@ -200,8 +224,6 @@ The current active core development team is composed of:
                     <sub><b>Ann Duan</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/roaldarbol">
                     <img src="https://avatars.githubusercontent.com/u/25629697?v=4" width="100;" alt="roaldarbol"/>
@@ -212,23 +234,21 @@ The current active core development team is composed of:
 		</tr>
 	<tbody>
 </table>
-<!-- readme: contributors,Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -end -->
-<!-- Manually added contributors (not on GitHub) -->
-<table>
-	<tbody>
-		<tr>
-            <td align="center">
-                <a href="https://www.sainsburywellcome.org/web/people/dammy-onih">
-                    <img src="https://www.sainsburywellcome.org/web/sites/default/files/styles/thumbnail_scale_and_crop/public/2018-12/dammy.jpg" width="100;" alt="dammyonih"/>
-                    <br />
-                    <sub><b>Dammy Onih</b></sub>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<!-- Manually added contributors (not on GitHub) -->
-:::
+<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -end -->
+
+<!-- =================== MANUAL: OTHER NON-GITHUB CONTRIBUTORS ===================
+This section contains other manually added contributors (not on GitHub) who have not
+contributed to the movement repository, but have contributed in other ways (e.g. by
+providing sample data, or by actively participating in discussions).
+=============================================================================== -->
+::::{list-table}
+:align: center
+:header-rows: 0
+
+*   - [![dammyonih](https://www.sainsburywellcome.org/web/sites/default/files/styles/thumbnail_scale_and_crop/public/2018-12/dammy.jpg) <br /> <sub><b>Dammy Onih</b></sub>](https://www.sainsburywellcome.org/web/people/dammy-onih)
+
+::::
+:::::
 
 ## Funders
 `movement` is made possible thanks to grant funding and the generous support of our host institutions:

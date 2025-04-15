@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4e542ac7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ade74076" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -56,7 +56,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Related projects" href="related-projects.html" />
-    <link rel="prev" title="People" href="people.html" /> 
+    <link rel="prev" title="Roadmaps" href="roadmaps.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />   
@@ -360,9 +360,9 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="people.html">People</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mission-scope.html">Mission &amp; Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmaps.html">Roadmaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="people.html">People</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">How to Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related-projects.html">Related projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -726,6 +726,36 @@ RestructuredText</label><div class="sd-tab-content docutils">
 </div>
 </section>
 </section>
+<section id="updating-the-contributors-list">
+<h3>Updating the contributors list<a class="headerlink" href="#updating-the-contributors-list" title="Link to this heading">#</a></h3>
+<p>The <a class="reference internal" href="people.html#target-contributors"><span class="std std-ref">contributors list</span></a> is automatically updated on the first day of each month by a GitHub actions workflow (<code class="docutils literal notranslate"><span class="pre">.github/workflows/update_contributors_list.yml</span></code>).
+It uses the <a class="reference external" href="https://github.com/marketplace/actions/contribute-list">Contributors-Readme-Action</a> to generate the list of contributors based on the commits to the repository.</p>
+<p>It is also possible to manually add other contributors who have not contributed code to the repository, but have contributed in other ways (e.g. by providing sample data, or by actively participating in discussions).
+The way to add them differs depending on whether they are GitHub users or not.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+GitHub users</label><div class="sd-tab-content docutils">
+<p>To add a contributor who has a GitHub account, locate the section marked with <code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">MANUAL:</span> <span class="pre">OTHER</span> <span class="pre">GITHUB</span> <span class="pre">CONTRIBUTORS</span> <span class="pre">--&gt;</span></code></p>
+<p>Next, add their GitHub username (e.g. <code class="docutils literal notranslate"><span class="pre">newcontributor</span></code>) to the <code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">readme:</span> <span class="pre">-start</span> <span class="pre">--&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">readme:</span> <span class="pre">-end</span> <span class="pre">--&gt;</span></code> lines as follows:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- readme: githubUser1,githubUser2,newcontributor -start --&gt;</span>
+existing content...
+<span class="cm">&lt;!-- readme: githubUser1,githubUser2,newcontributor -end --&gt;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+Non-GitHub users</label><div class="sd-tab-content docutils">
+<p>To add a contributor who does not have a GitHub account, locate the section marked with <code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">MANUAL:</span> <span class="pre">OTHER</span> <span class="pre">NON-GITHUB</span> <span class="pre">CONTRIBUTORS</span> <span class="pre">--&gt;</span></code> in <code class="docutils literal notranslate"><span class="pre">docs/source/community/people.md</span></code>.</p>
+<p>Next, add a row containing the contributor’s image, name, and website to the existing <code class="docutils literal notranslate"><span class="pre">list-table</span></code> as follows:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span><span class="w"> </span>  - existing content...
+<span class="k">*</span><span class="w"> </span>  - [<span class="nt">![newcontributor</span>](<span class="na">https://newcontributor.image.jpg</span>) &lt;br /&gt; &lt;sub&gt;&lt;b&gt;New Contributor&lt;/b&gt;&lt;/sub&gt;](https://newcontributor.website.com)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="building-the-documentation-locally">
 <h3>Building the documentation locally<a class="headerlink" href="#building-the-documentation-locally" title="Link to this heading">#</a></h3>
 <p>We recommend that you build and view the documentation website locally, before you push your proposed changes.</p>
@@ -821,22 +851,22 @@ To add a new file, you will need to:</p>
 <li><p>Add your new files to the <code class="docutils literal notranslate"><span class="pre">poses</span></code>, <code class="docutils literal notranslate"><span class="pre">bboxes</span></code>, <code class="docutils literal notranslate"><span class="pre">videos</span></code> and/or <code class="docutils literal notranslate"><span class="pre">frames</span></code> folders as appropriate. Follow the existing file naming conventions as closely as possible.</p></li>
 <li><p>Determine the sha256 checksum hash of each new file. You can do this in a terminal by running:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
 Ubuntu</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sha256sum<span class="w"> </span>&lt;filename&gt;
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-5">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
 MacOS</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>&lt;filename&gt;
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-6">
+<input id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-hashfile<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>SHA256
 </pre></div>
@@ -889,12 +919,12 @@ Windows</label><div class="sd-tab-content docutils">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="people.html"
+       href="roadmaps.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">People</p>
+        <p class="prev-next-title">Roadmaps</p>
       </div>
     </a>
     <a class="right-next"
@@ -955,6 +985,7 @@ Windows</label><div class="sd-tab-content docutils">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#external-references">External references</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-the-contributors-list">Updating the contributors list</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-documentation-locally">Building the documentation locally</a></li>
 </ul>
 </li>
