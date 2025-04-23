@@ -62,8 +62,6 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <sub><b>Will Graham</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/stellaprins">
                     <img src="https://avatars.githubusercontent.com/u/30465823?v=4" width="100;" alt="stellaprins"/>
@@ -71,6 +69,8 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <sub><b>Stella</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/b-peri">
                     <img src="https://avatars.githubusercontent.com/u/77279592?v=4" width="100;" alt="b-peri"/>
@@ -99,8 +99,6 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <sub><b>Luigi Petrucco</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/harsh-bhanushali-05">
                     <img src="https://avatars.githubusercontent.com/u/109029538?v=4" width="100;" alt="harsh-bhanushali-05"/>
@@ -115,6 +113,8 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <sub><b>Igor Tatarnikov</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/Kasra-Shirvanian">
                     <img src="https://avatars.githubusercontent.com/u/164632798?v=4" width="100;" alt="Kasra-Shirvanian"/>
@@ -136,8 +136,6 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <sub><b>Lauraschwarz</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/angkul07">
                     <img src="https://avatars.githubusercontent.com/u/129066458?v=4" width="100;" alt="angkul07"/>
@@ -201,8 +199,6 @@ providing sample data, or by actively participating in discussions).
                     <sub><b>Dimokratis Karamanlis</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/shailajaakella">
                     <img src="https://avatars.githubusercontent.com/u/68871896?v=4" width="100;" alt="shailajaakella"/>
@@ -210,6 +206,8 @@ providing sample data, or by actively participating in discussions).
                     <sub><b>shailajaakella</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/mehulrastogi">
                     <img src="https://avatars.githubusercontent.com/u/22076299?v=4" width="100;" alt="mehulrastogi"/>
