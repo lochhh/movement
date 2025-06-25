@@ -44,7 +44,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=6aee1ebc"></script>
+    <script src="../_static/documentation_options.js?v=38010a60"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -120,8 +120,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/movement_logo_transparent_no-text.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/movement_logo_transparent_no-text.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">movement v0.1.dev1</p>
+  
+    <p class="title logo__title">movement v0.1.dev272</p>
   
 </a></div>
     
@@ -369,7 +377,12 @@
 <li class="toctree-l1"><a class="reference internal" href="compute_kinematics.html">Compute and visualise kinematics.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary_angles.html">Compute distances and angles to regions of interest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="load_and_upsample_bboxes.html">Load and upsample bounding box tracks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="broadcasting_your_own_methods.html">Extend your analysis methods along data dimensions</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/broadcasting_your_own_methods.html">Broadcast functions across multi-dimensional data</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -655,7 +668,7 @@ previous plot but become even more obvious when the velocity of the pupil
 centroid is plotted. To do this, we use <code class="docutils literal notranslate"><span class="pre">compute_velocity</span></code> from the
 <code class="docutils literal notranslate"><span class="pre">movement.kinematics</span></code> module to calculate the velocity of the eye
 movements.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pupil_velocity</span></a> <span class="o">=</span> <a href="../api/movement.kinematics.compute_velocity.html#movement.kinematics.compute_velocity" title="movement.kinematics.compute_velocity" class="sphx-glr-backref-module-movement-kinematics sphx-glr-backref-type-py-function"><span class="n">kin</span><span class="o">.</span><span class="n">compute_velocity</span></a><span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.sel.html#xarray.DataArray.sel" title="xarray.DataArray.sel" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-method"><span class="n">positions_norm</span><span class="o">.</span><span class="n">sel</span></a><span class="p">(</span><span class="n">keypoints</span><span class="o">=</span><span class="s2">&quot;pupil-C&quot;</span><span class="p">))</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pupil_velocity</span></a> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">compute_velocity</span><span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.sel.html#xarray.DataArray.sel" title="xarray.DataArray.sel" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-method"><span class="n">positions_norm</span><span class="o">.</span><span class="n">sel</span></a><span class="p">(</span><span class="n">keypoints</span><span class="o">=</span><span class="s2">&quot;pupil-C&quot;</span><span class="p">))</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.name.html#xarray.DataArray.name" title="xarray.DataArray.name" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-property"><span class="n">pupil_velocity</span><span class="o">.</span><span class="n">name</span></a> <span class="o">=</span> <span class="s2">&quot;pupil velocity&quot;</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.sel.html#xarray.DataArray.sel" title="xarray.DataArray.sel" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-method"><span class="n">pupil_velocity</span><span class="o">.</span><span class="n">sel</span></a><span class="p">(</span><span class="o">**</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sel</span></a><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
     <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x</span></a><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">&quot;lighting&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.5</span>
@@ -671,7 +684,7 @@ negative peaks correspond to rapid eye movements to the left.</p>
 <p>Here we define the pupil diameter as the distance between the two pupil
 keypoints. We use <code class="docutils literal notranslate"><span class="pre">compute_pairwise_distances</span></code> from <code class="docutils literal notranslate"><span class="pre">movement.kinematics</span></code>
 to calculate the Euclidean distance between <code class="docutils literal notranslate"><span class="pre">pupil-L</span></code> and <code class="docutils literal notranslate"><span class="pre">pupil-R</span></code>.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pupil_diameter</span></a><span class="p">:</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class"><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span></a> <span class="o">=</span> <a href="../api/movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances" title="movement.kinematics.compute_pairwise_distances" class="sphx-glr-backref-module-movement-kinematics sphx-glr-backref-type-py-function"><span class="n">kin</span><span class="o">.</span><span class="n">compute_pairwise_distances</span></a><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pupil_diameter</span></a><span class="p">:</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class"><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span></a> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">compute_pairwise_distances</span><span class="p">(</span>
     <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">positions_norm</span></a><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;keypoints&quot;</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pupil-L&quot;</span><span class="p">:</span> <span class="s2">&quot;pupil-R&quot;</span><span class="p">}</span>
 <span class="p">)</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.name.html#xarray.DataArray.name" title="xarray.DataArray.name" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-property"><span class="n">pupil_diameter</span><span class="o">.</span><span class="n">name</span></a> <span class="o">=</span> <span class="s2">&quot;pupil diameter&quot;</span>
@@ -688,7 +701,7 @@ In fact, these steep peaks are probably caused by tracking errors
 during blinking or squinting.
 By looking at the distance between the two eye keypoints we can get an idea
 of whether (and when) the animal is blinking or squinting.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">distance_between_eye_keypoints</span></a><span class="p">:</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class"><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span></a> <span class="o">=</span> <a href="../api/movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances" title="movement.kinematics.compute_pairwise_distances" class="sphx-glr-backref-module-movement-kinematics sphx-glr-backref-type-py-function"><span class="n">kin</span><span class="o">.</span><span class="n">compute_pairwise_distances</span></a><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">distance_between_eye_keypoints</span></a><span class="p">:</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class"><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span></a> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">compute_pairwise_distances</span><span class="p">(</span>
     <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">positions_norm</span></a><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;keypoints&quot;</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;eye-L&quot;</span><span class="p">:</span> <span class="s2">&quot;eye-R&quot;</span><span class="p">}</span>
 <span class="p">)</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.name.html#xarray.DataArray.name" title="xarray.DataArray.name" class="sphx-glr-backref-module-xarray sphx-glr-backref-type-py-property"><span class="n">distance_between_eye_keypoints</span><span class="o">.</span><span class="n">name</span></a> <span class="o">=</span> <span class="s2">&quot;distance (eye-L - eye-R)&quot;</span>
@@ -746,10 +759,10 @@ option for the <code class="docutils literal notranslate"><span class="pre">stat
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="smooth.html#sphx-glr-examples-smooth-py"><span class="std std-ref">Smooth pose tracks</span></a> example.</p>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.704 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.791 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-mouse-eye-movements-py">
 <div class="binder-badge docutils container">
-<a class="reference external image-reference" href="https://mybinder.org/v2/gh/neuroinformatics-unit/movement/gh-pages?filepath=notebooks/examples/mouse_eye_movements.ipynb"><img alt="Launch binder" src="../_images/binder_badge_logo.svg" style="width: 150px;" />
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/neuroinformatics-unit/movement/gh-pages?filepath=notebooks/examples/mouse_eye_movements.ipynb"><img alt="Launch binder" src="../_images/binder_badge_logo1.svg" style="width: 150px;" />
 </a>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
@@ -830,15 +843,6 @@ option for the <code class="docutils literal notranslate"><span class="pre">stat
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-pupil-diameter">Smooth pupil diameter</a></li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/examples/mouse_eye_movements.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
 
 </div></div>
               

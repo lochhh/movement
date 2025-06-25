@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=6aee1ebc"></script>
+    <script src="../../../_static/documentation_options.js?v=38010a60"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -117,8 +117,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../../_static/movement_logo_transparent_no-text.png" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/movement_logo_transparent_no-text.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">movement v0.1.dev1</p>
+  
+    <p class="title logo__title">movement v0.1.dev272</p>
   
 </a></div>
     
@@ -494,8 +502,9 @@
 
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from movement.io import load_bboxes</span>
+<span class="sd">    &gt;&gt;&gt; rng = np.random.default_rng(seed=42)</span>
 <span class="sd">    &gt;&gt;&gt; ds = load_bboxes.from_numpy(</span>
-<span class="sd">    ...     position_array=np.random.rand(100, 2, 2),</span>
+<span class="sd">    ...     position_array=rng.random((100, 2, 2)),</span>
 <span class="sd">    ...     shape_array=np.ones((100, 2, 2)) * [40, 30],</span>
 <span class="sd">    ...     confidence_array=np.ones((100, 2)) * 0.5,</span>
 <span class="sd">    ...     individual_names=[&quot;id_0&quot;, &quot;id_1&quot;],</span>
@@ -510,7 +519,7 @@
 <span class="sd">    20.033,... 21.65 s.</span>
 
 <span class="sd">    &gt;&gt;&gt; ds = load_bboxes.from_numpy(</span>
-<span class="sd">    ...     position_array=np.random.rand(100, 2, 2),</span>
+<span class="sd">    ...     position_array=rng.random((100, 2, 2)),</span>
 <span class="sd">    ...     shape_array=np.ones((100, 2, 2)) * [40, 30],</span>
 <span class="sd">    ...     confidence_array=np.ones((100, 2)) * 0.5,</span>
 <span class="sd">    ...     individual_names=[&quot;id_0&quot;, &quot;id_1&quot;],</span>
@@ -523,7 +532,7 @@
 <span class="sd">    To do this, we simply omit the ``frame_array`` input argument.</span>
 
 <span class="sd">    &gt;&gt;&gt; ds = load_bboxes.from_numpy(</span>
-<span class="sd">    ...     position_array=np.random.rand(100, 2, 2),</span>
+<span class="sd">    ...     position_array=rng.random((100, 2, 2)),</span>
 <span class="sd">    ...     shape_array=np.ones((100, 2, 2)) * [40, 30],</span>
 <span class="sd">    ...     confidence_array=np.ones((100, 2)) * 0.5,</span>
 <span class="sd">    ...     individual_names=[&quot;id_0&quot;, &quot;id_1&quot;],</span>
@@ -535,7 +544,7 @@
 <span class="sd">    and pass an ``fps`` value.</span>
 
 <span class="sd">    &gt;&gt;&gt; ds = load_bboxes.from_numpy(</span>
-<span class="sd">    ...     position_array=np.random.rand(100, 2, 2),</span>
+<span class="sd">    ...     position_array=rng.random((100, 2, 2)),</span>
 <span class="sd">    ...     shape_array=np.ones((100, 2, 2)) * [40, 30],</span>
 <span class="sd">    ...     confidence_array=np.ones((100, 2)) * 0.5,</span>
 <span class="sd">    ...     individual_names=[&quot;id_0&quot;, &quot;id_1&quot;],</span>
@@ -688,8 +697,13 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    The bounding boxes IDs specified in the &quot;track&quot; field of the VIA</span>
-<span class="sd">    tracks .csv file are mapped to the &quot;individual_name&quot; column of the</span>
+<span class="sd">    Note that the x,y coordinates in the input VIA tracks .csv file</span>
+<span class="sd">    represent the the top-left corner of each bounding box. Instead the</span>
+<span class="sd">    corresponding ``movement`` dataset holds in its ``position`` array the</span>
+<span class="sd">    centroid of each bounding box.</span>
+
+<span class="sd">    Additionally, the bounding boxes IDs specified in the &quot;track&quot; field of</span>
+<span class="sd">    the VIA tracks .csv file are mapped to the ``individuals`` dimension in the</span>
 <span class="sd">    ``movement`` dataset. The individual names follow the format ``id_&lt;N&gt;``,</span>
 <span class="sd">    with N being the bounding box ID.</span>
 
@@ -908,19 +922,20 @@
         <span class="p">}</span>
     <span class="p">)</span>
 
-    <span class="c1"># Sort dataframe by ID and frame number</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;frame_number&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="c1"># Fill in empty frames with nans</span>
+    <span class="c1"># Define desired index: all combinations of ID and frame number</span>
     <span class="n">multi_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;frame_number&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()],</span>
+        <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;frame_number&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
+        <span class="c1"># these unique lists may not be sorted!</span>
         <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;frame_number&quot;</span><span class="p">],</span>
-    <span class="p">)</span>  <span class="c1"># desired index: all combinations of ID and frame number</span>
+    <span class="p">)</span>
 
-    <span class="c1"># Set index to (ID, frame number), fill in values with nans and</span>
-    <span class="c1"># reset to original index</span>
+    <span class="c1"># Set index to (ID, frame number), fill in values with nans,</span>
+    <span class="c1"># sort by ID and frame_number and reset to new index</span>
     <span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;frame_number&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">multi_index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;frame_number&quot;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">multi_index</span><span class="p">)</span>  <span class="c1"># fill in empty frame-ID pairs with nans</span>
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;frame_number&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># sort by ID and frame</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
 

@@ -12,7 +12,7 @@ The current active core development team is composed of:
 
 ## Collaborations
 We are eager to explore collaboration opportunities with research labs and research software engineering teams.
-Our current and past collaborations include:
+Our current and past collaborators include:
 - [Keshavarzi Laboratory](https://www.keshavarzilab.com/) at the University of Cambridge
 - [UCL Advanced Research Computing Centre](https://www.ucl.ac.uk/advanced-research-computing/advanced-research-computing-centre)
 
@@ -35,17 +35,17 @@ This is automatically updated via GitHub Actions and should not be modified.
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/lochhh">
-                    <img src="https://avatars.githubusercontent.com/u/14955489?v=4" width="100;" alt="lochhh"/>
-                    <br />
-                    <sub><b>Chang Huan Lo</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/sfmig">
                     <img src="https://avatars.githubusercontent.com/u/33267254?v=4" width="100;" alt="sfmig"/>
                     <br />
                     <sub><b>sfmig</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lochhh">
+                    <img src="https://avatars.githubusercontent.com/u/14955489?v=4" width="100;" alt="lochhh"/>
+                    <br />
+                    <sub><b>Chang Huan Lo</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -66,7 +66,7 @@ This is automatically updated via GitHub Actions and should not be modified.
                 <a href="https://github.com/stellaprins">
                     <img src="https://avatars.githubusercontent.com/u/30465823?v=4" width="100;" alt="stellaprins"/>
                     <br />
-                    <sub><b>Stella</b></sub>
+                    <sub><b>Stella Prins</b></sub>
                 </a>
             </td>
 		</tr>
@@ -160,7 +160,7 @@ This section contains other manually added contributors (on GitHub) who have not
 contributed to the movement repository, but have contributed in other ways (e.g. by
 providing sample data, or by actively participating in discussions).
 =============================================================================== -->
-<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -start -->
+<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol,Mahi7828,ShigrafS -start -->
 <table>
 	<tbody>
 		<tr>
@@ -229,10 +229,24 @@ providing sample data, or by actively participating in discussions).
                     <sub><b>Mikkel Roald-Arbøl</b></sub>
                 </a>
             </td>
+            <td align="center">
+                <a href="https://github.com/mahi7828">
+                    <img src="https://avatars.githubusercontent.com/u/140162102?v=4" width="100;" alt="mahi7828"/>
+                    <br />
+                    <sub><b>Mahima Sahu</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/shigrafs">
+                    <img src="https://avatars.githubusercontent.com/u/140247389?v=4" width="100;" alt="shigrafs"/>
+                    <br />
+                    <sub><b>shigrafs</b></sub>
+                </a>
+            </td>
 		</tr>
 	<tbody>
 </table>
-<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol -end -->
+<!-- readme: Sepidak,sannatitus,lkatsouri,athenaakrami,dimokaramanlis,shailajaAkella,mehulrastogi,NeuroDuan,roaldarbol,Mahi7828,ShigrafS -end -->
 
 <!-- =================== MANUAL: OTHER NON-GITHUB CONTRIBUTORS ===================
 This section contains other manually added contributors (not on GitHub) who have not

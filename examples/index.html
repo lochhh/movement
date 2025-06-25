@@ -44,7 +44,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=6aee1ebc"></script>
+    <script src="../_static/documentation_options.js?v=38010a60"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -122,8 +122,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/movement_logo_transparent_no-text.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/movement_logo_transparent_no-text.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">movement v0.1.dev1</p>
+  
+    <p class="title logo__title">movement v0.1.dev272</p>
   
 </a></div>
     
@@ -371,7 +379,12 @@
 <li class="toctree-l1"><a class="reference internal" href="compute_kinematics.html">Compute and visualise kinematics.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary_angles.html">Compute distances and angles to regions of interest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="load_and_upsample_bboxes.html">Load and upsample bounding box tracks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="broadcasting_your_own_methods.html">Extend your analysis methods along data dimensions</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced/index.html">Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/broadcasting_your_own_methods.html">Broadcast functions across multi-dimensional data</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -430,7 +443,8 @@
                 <article class="bd-article">
                    <section id="examples">
 <span id="target-examples"></span><h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
-<p>Below is a gallery of examples using <code class="docutils literal notranslate"><span class="pre">movement</span></code>.</p>
+<p>Below is a gallery of examples showcasing the core functionality and concepts
+of <code class="docutils literal notranslate"><span class="pre">movement</span></code>.</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Load and explore an example dataset of pose tracks."><img alt="" src="../_images/sphx_glr_load_and_explore_poses_thumb.png" />
 <p><a class="reference internal" href="load_and_explore_poses.html#sphx-glr-examples-load-and-explore-poses-py"><span class="std std-ref">Load and explore pose tracks</span></a></p>
   <div class="sphx-glr-thumbnail-title">Load and explore pose tracks</div>
@@ -458,9 +472,15 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="Load bounding box tracks and upsample them to match the video frame rate."><img alt="" src="../_images/sphx_glr_load_and_upsample_bboxes_thumb.png" />
 <p><a class="reference internal" href="load_and_upsample_bboxes.html#sphx-glr-examples-load-and-upsample-bboxes-py"><span class="std std-ref">Load and upsample bounding box tracks</span></a></p>
   <div class="sphx-glr-thumbnail-title">Load and upsample bounding box tracks</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Learn how to use the make_broadcastable decorator, to easily cast functions  across an entire xarray.DataArray."><img alt="" src="../_images/sphx_glr_broadcasting_your_own_methods_thumb.png" />
-<p><a class="reference internal" href="broadcasting_your_own_methods.html#sphx-glr-examples-broadcasting-your-own-methods-py"><span class="std std-ref">Extend your analysis methods along data dimensions</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Extend your analysis methods along data dimensions</div>
+</div></div><div class="toctree-wrapper compound">
+</div>
+<section id="advanced">
+<h2>Advanced<a class="headerlink" href="#advanced" title="Link to this heading">#</a></h2>
+<p>These examples are intended for experienced users who want to leverage the
+full power of <code class="docutils literal notranslate"><span class="pre">movement</span></code>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Use the make_broadcastable decorator to efficiently apply functions across any data dimension."><img alt="" src="../_images/sphx_glr_broadcasting_your_own_methods_thumb.png" />
+<p><a class="reference internal" href="advanced/broadcasting_your_own_methods.html#sphx-glr-examples-advanced-broadcasting-your-own-methods-py"><span class="std std-ref">Broadcast functions across multi-dimensional data</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Broadcast functions across multi-dimensional data</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">
@@ -472,6 +492,7 @@
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
 </section>
 
 <div class="section ablog__blog_comments">
@@ -517,13 +538,16 @@
 
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/examples/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced">Advanced</a></li>
+</ul>
+  </nav></div>
 
 </div></div>
               

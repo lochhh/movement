@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=6aee1ebc"></script>
+    <script src="_static/documentation_options.js?v=38010a60"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
@@ -117,8 +117,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/movement_logo_transparent_no-text.png" class="logo__image only-light" alt=""/>
+    <img src="_static/movement_logo_transparent_no-text.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">movement v0.1.dev1</p>
+  
+    <p class="title logo__title">movement v0.1.dev272</p>
   
 </a></div>
     
@@ -405,12 +413,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.utils.broadcasting.apply_along_da_axis.html#movement.utils.broadcasting.apply_along_da_axis">apply_along_da_axis() (in module movement.utils.broadcasting)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.napari.layer_styles.LayerStyle.html#movement.napari.layer_styles.LayerStyle.as_kwargs">as_kwargs() (movement.napari.layer_styles.LayerStyle method)</a>
 
       <ul>
         <li><a href="api/movement.napari.layer_styles.PointsStyle.html#movement.napari.layer_styles.PointsStyle.as_kwargs">(movement.napari.layer_styles.PointsStyle method)</a>
+</li>
+        <li><a href="api/movement.napari.layer_styles.TracksStyle.html#movement.napari.layer_styles.TracksStyle.as_kwargs">(movement.napari.layer_styles.TracksStyle method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -431,11 +439,9 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/movement.utils.reports.calculate_nan_stats.html#movement.utils.reports.calculate_nan_stats">calculate_nan_stats() (in module movement.utils.reports)</a>
-</li>
       <li><a href="api/movement.utils.vector.cart2pol.html#movement.utils.vector.cart2pol">cart2pol() (in module movement.utils.vector)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_acceleration.html#movement.kinematics.compute_acceleration">compute_acceleration() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_acceleration.html#movement.kinematics.kinematics.compute_acceleration">compute_acceleration() (in module movement.kinematics.kinematics)</a>
 </li>
       <li><a href="api/movement.roi.base.BaseRegionOfInterest.html#movement.roi.base.BaseRegionOfInterest.compute_allocentric_angle_to_nearest_point">compute_allocentric_angle_to_nearest_point() (movement.roi.base.BaseRegionOfInterest method)</a>
 
@@ -455,7 +461,7 @@
         <li><a href="api/movement.roi.polygon.PolygonOfInterest.html#movement.roi.polygon.PolygonOfInterest.compute_approach_vector">(movement.roi.polygon.PolygonOfInterest method)</a>
 </li>
       </ul></li>
-      <li><a href="api/movement.kinematics.compute_displacement.html#movement.kinematics.compute_displacement">compute_displacement() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_displacement.html#movement.kinematics.kinematics.compute_displacement">compute_displacement() (in module movement.kinematics.kinematics)</a>
 </li>
       <li><a href="api/movement.roi.base.BaseRegionOfInterest.html#movement.roi.base.BaseRegionOfInterest.compute_distance_to">compute_distance_to() (movement.roi.base.BaseRegionOfInterest method)</a>
 
@@ -473,14 +479,12 @@
         <li><a href="api/movement.roi.polygon.PolygonOfInterest.html#movement.roi.polygon.PolygonOfInterest.compute_egocentric_angle_to_nearest_point">(movement.roi.polygon.PolygonOfInterest method)</a>
 </li>
       </ul></li>
-      <li><a href="api/movement.kinematics.compute_forward_vector.html#movement.kinematics.compute_forward_vector">compute_forward_vector() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.orientation.compute_forward_vector.html#movement.kinematics.orientation.compute_forward_vector">compute_forward_vector() (in module movement.kinematics.orientation)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_forward_vector_angle.html#movement.kinematics.compute_forward_vector_angle">compute_forward_vector_angle() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.orientation.compute_forward_vector_angle.html#movement.kinematics.orientation.compute_forward_vector_angle">compute_forward_vector_angle() (in module movement.kinematics.orientation)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_head_direction_vector.html#movement.kinematics.compute_head_direction_vector">compute_head_direction_vector() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.orientation.compute_head_direction_vector.html#movement.kinematics.orientation.compute_head_direction_vector">compute_head_direction_vector() (in module movement.kinematics.orientation)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.roi.base.BaseRegionOfInterest.html#movement.roi.base.BaseRegionOfInterest.compute_nearest_point_to">compute_nearest_point_to() (movement.roi.base.BaseRegionOfInterest method)</a>
 
       <ul>
@@ -489,21 +493,23 @@
         <li><a href="api/movement.roi.polygon.PolygonOfInterest.html#movement.roi.polygon.PolygonOfInterest.compute_nearest_point_to">(movement.roi.polygon.PolygonOfInterest method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.utils.vector.compute_norm.html#movement.utils.vector.compute_norm">compute_norm() (in module movement.utils.vector)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_pairwise_distances.html#movement.kinematics.compute_pairwise_distances">compute_pairwise_distances() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.distances.compute_pairwise_distances.html#movement.kinematics.distances.compute_pairwise_distances">compute_pairwise_distances() (in module movement.kinematics.distances)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_path_length.html#movement.kinematics.compute_path_length">compute_path_length() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_path_length.html#movement.kinematics.kinematics.compute_path_length">compute_path_length() (in module movement.kinematics.kinematics)</a>
 </li>
       <li><a href="api/movement.roi.conditions.compute_region_occupancy.html#movement.roi.conditions.compute_region_occupancy">compute_region_occupancy() (in module movement.roi.conditions)</a>
 </li>
       <li><a href="api/movement.utils.vector.compute_signed_angle_2d.html#movement.utils.vector.compute_signed_angle_2d">compute_signed_angle_2d() (in module movement.utils.vector)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_speed.html#movement.kinematics.compute_speed">compute_speed() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_speed.html#movement.kinematics.kinematics.compute_speed">compute_speed() (in module movement.kinematics.kinematics)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_time_derivative.html#movement.kinematics.compute_time_derivative">compute_time_derivative() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_time_derivative.html#movement.kinematics.kinematics.compute_time_derivative">compute_time_derivative() (in module movement.kinematics.kinematics)</a>
 </li>
-      <li><a href="api/movement.kinematics.compute_velocity.html#movement.kinematics.compute_velocity">compute_velocity() (in module movement.kinematics)</a>
+      <li><a href="api/movement.kinematics.kinematics.compute_velocity.html#movement.kinematics.kinematics.compute_velocity">compute_velocity() (in module movement.kinematics.kinematics)</a>
 </li>
       <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.confidence_array">confidence_array (movement.validators.datasets.ValidBboxesDataset attribute)</a>
 
@@ -579,6 +585,8 @@
 </li>
       <li><a href="api/movement.sample_data.fetch_dataset_paths.html#movement.sample_data.fetch_dataset_paths">fetch_dataset_paths() (in module movement.sample_data)</a>
 </li>
+      <li><a href="api/movement.validators.files.ValidNWBFile.html#movement.validators.files.ValidNWBFile.file">file (movement.validators.files.ValidNWBFile attribute)</a>
+</li>
       <li><a href="api/movement.filtering.filter_by_confidence.html#movement.filtering.filter_by_confidence">filter_by_confidence() (in module movement.filtering)</a>
 </li>
       <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.fps">fps (movement.validators.datasets.ValidBboxesDataset attribute)</a>
@@ -617,6 +625,8 @@
         <li><a href="api/movement.io.load_poses.from_numpy.html#movement.io.load_poses.from_numpy">(in module movement.io.load_poses)</a>
 </li>
       </ul></li>
+      <li><a href="api/movement.io.load_poses.from_nwb_file.html#movement.io.load_poses.from_nwb_file">from_nwb_file() (in module movement.io.load_poses)</a>
+</li>
       <li><a href="api/movement.io.load_poses.from_sleap_file.html#movement.io.load_poses.from_sleap_file">from_sleap_file() (in module movement.io.load_poses)</a>
 </li>
       <li><a href="api/movement.io.load_bboxes.from_via_tracks_file.html#movement.io.load_bboxes.from_via_tracks_file">from_via_tracks_file() (in module movement.io.load_bboxes)</a>
@@ -687,8 +697,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.utils.broadcasting.make_broadcastable.html#movement.utils.broadcasting.make_broadcastable">make_broadcastable() (in module movement.utils.broadcasting)</a>
 </li>
-      <li><a href="api/movement.filtering.median_filter.html#movement.filtering.median_filter">median_filter() (in module movement.filtering)</a>
-</li>
       <li>
     module
 
@@ -699,9 +707,15 @@
 </li>
         <li><a href="api/movement.io.load_poses.html#module-movement.io.load_poses">movement.io.load_poses</a>
 </li>
+        <li><a href="api/movement.io.nwb.html#module-movement.io.nwb">movement.io.nwb</a>
+</li>
         <li><a href="api/movement.io.save_poses.html#module-movement.io.save_poses">movement.io.save_poses</a>
 </li>
-        <li><a href="api/movement.kinematics.html#module-movement.kinematics">movement.kinematics</a>
+        <li><a href="api/movement.kinematics.distances.html#module-movement.kinematics.distances">movement.kinematics.distances</a>
+</li>
+        <li><a href="api/movement.kinematics.kinematics.html#module-movement.kinematics.kinematics">movement.kinematics.kinematics</a>
+</li>
+        <li><a href="api/movement.kinematics.orientation.html#module-movement.kinematics.orientation">movement.kinematics.orientation</a>
 </li>
         <li><a href="api/movement.napari.convert.html#module-movement.napari.convert">movement.napari.convert</a>
 </li>
@@ -760,6 +774,13 @@
 </li>
       </ul></li>
       <li>
+    movement.io.nwb
+
+      <ul>
+        <li><a href="api/movement.io.nwb.html#module-movement.io.nwb">module</a>
+</li>
+      </ul></li>
+      <li>
     movement.io.save_poses
 
       <ul>
@@ -767,14 +788,28 @@
 </li>
       </ul></li>
       <li>
-    movement.kinematics
+    movement.kinematics.distances
 
       <ul>
-        <li><a href="api/movement.kinematics.html#module-movement.kinematics">module</a>
+        <li><a href="api/movement.kinematics.distances.html#module-movement.kinematics.distances">module</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    movement.kinematics.kinematics
+
+      <ul>
+        <li><a href="api/movement.kinematics.kinematics.html#module-movement.kinematics.kinematics">module</a>
+</li>
+      </ul></li>
+      <li>
+    movement.kinematics.orientation
+
+      <ul>
+        <li><a href="api/movement.kinematics.orientation.html#module-movement.kinematics.orientation">module</a>
+</li>
+      </ul></li>
       <li>
     movement.napari.convert
 
@@ -914,6 +949,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.roi.line.LineOfInterest.html#movement.roi.line.LineOfInterest.normal">normal() (movement.roi.line.LineOfInterest method)</a>
 </li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.nwbfile_kwargs">nwbfile_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
+</li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig">NWBFileSaveConfig (class in movement.io.nwb)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -940,10 +979,10 @@
         <li><a href="api/movement.roi.polygon.PolygonOfInterest.html#movement.roi.polygon.PolygonOfInterest.plot">(movement.roi.polygon.PolygonOfInterest method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.plots.trajectory.plot_centroid_trajectory.html#movement.plots.trajectory.plot_centroid_trajectory">plot_centroid_trajectory() (in module movement.plots.trajectory)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.plots.occupancy.plot_occupancy.html#movement.plots.occupancy.plot_occupancy">plot_occupancy() (in module movement.plots.occupancy)</a>
 </li>
       <li><a href="api/movement.napari.layer_styles.PointsStyle.html#movement.napari.layer_styles.PointsStyle">PointsStyle (class in movement.napari.layer_styles)</a>
@@ -952,12 +991,18 @@
 </li>
       <li><a href="api/movement.roi.polygon.PolygonOfInterest.html#movement.roi.polygon.PolygonOfInterest">PolygonOfInterest (class in movement.roi.polygon)</a>
 </li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.pose_estimation_kwargs">pose_estimation_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
+</li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.pose_estimation_series_kwargs">pose_estimation_series_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
+</li>
       <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.position_array">position_array (movement.validators.datasets.ValidBboxesDataset attribute)</a>
 
       <ul>
         <li><a href="api/movement.validators.datasets.ValidPosesDataset.html#movement.validators.datasets.ValidPosesDataset.position_array">(movement.validators.datasets.ValidPosesDataset attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.processing_module_kwargs">processing_module_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -989,14 +1034,20 @@
       <li><a href="api/movement.transforms.scale.html#movement.transforms.scale">scale() (in module movement.transforms)</a>
 </li>
       <li><a href="api/movement.napari.layer_styles.PointsStyle.html#movement.napari.layer_styles.PointsStyle.set_color_by">set_color_by() (movement.napari.layer_styles.PointsStyle method)</a>
+
+      <ul>
+        <li><a href="api/movement.napari.layer_styles.TracksStyle.html#movement.napari.layer_styles.TracksStyle.set_color_by">(movement.napari.layer_styles.TracksStyle method)</a>
 </li>
+      </ul></li>
       <li><a href="api/movement.napari.layer_styles.PointsStyle.html#movement.napari.layer_styles.PointsStyle.set_text_by">set_text_by() (movement.napari.layer_styles.PointsStyle method)</a>
+</li>
+      <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.shape_array">shape_array (movement.validators.datasets.ValidBboxesDataset attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.shape_array">shape_array (movement.validators.datasets.ValidBboxesDataset attribute)</a>
-</li>
       <li><a href="api/movement.utils.logging.showwarning.html#movement.utils.logging.showwarning">showwarning() (in module movement.utils.logging)</a>
+</li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.skeleton_kwargs">skeleton_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
 </li>
       <li><a href="api/movement.validators.datasets.ValidBboxesDataset.html#movement.validators.datasets.ValidBboxesDataset.source_software">source_software (movement.validators.datasets.ValidBboxesDataset attribute)</a>
 
@@ -1005,6 +1056,8 @@
 </li>
       </ul></li>
       <li><a href="api/movement.utils.broadcasting.space_broadcastable.html#movement.utils.broadcasting.space_broadcastable">space_broadcastable() (in module movement.utils.broadcasting)</a>
+</li>
+      <li><a href="api/movement.io.nwb.NWBFileSaveConfig.html#movement.io.nwb.NWBFileSaveConfig.subject_kwargs">subject_kwargs (movement.io.nwb.NWBFileSaveConfig attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1016,11 +1069,15 @@
 </li>
       <li><a href="api/movement.io.save_poses.to_dlc_style_df.html#movement.io.save_poses.to_dlc_style_df">to_dlc_style_df() (in module movement.io.save_poses)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/movement.io.save_poses.to_lp_file.html#movement.io.save_poses.to_lp_file">to_lp_file() (in module movement.io.save_poses)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/movement.io.save_poses.to_nwb_file.html#movement.io.save_poses.to_nwb_file">to_nwb_file() (in module movement.io.save_poses)</a>
+</li>
       <li><a href="api/movement.io.save_poses.to_sleap_analysis_file.html#movement.io.save_poses.to_sleap_analysis_file">to_sleap_analysis_file() (in module movement.io.save_poses)</a>
+</li>
+      <li><a href="api/movement.napari.layer_styles.TracksStyle.html#movement.napari.layer_styles.TracksStyle">TracksStyle (class in movement.napari.layer_styles)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1041,6 +1098,8 @@
       <li><a href="api/movement.validators.files.ValidFile.html#movement.validators.files.ValidFile">ValidFile (class in movement.validators.files)</a>
 </li>
       <li><a href="api/movement.validators.files.ValidHDF5.html#movement.validators.files.ValidHDF5">ValidHDF5 (class in movement.validators.files)</a>
+</li>
+      <li><a href="api/movement.validators.files.ValidNWBFile.html#movement.validators.files.ValidNWBFile">ValidNWBFile (class in movement.validators.files)</a>
 </li>
       <li><a href="api/movement.validators.datasets.ValidPosesDataset.html#movement.validators.datasets.ValidPosesDataset">ValidPosesDataset (class in movement.validators.datasets)</a>
 </li>
