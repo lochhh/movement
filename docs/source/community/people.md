@@ -137,12 +137,28 @@ This is automatically updated via GitHub Actions and should not be modified.
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/vtushar06">
+                    <img src="https://avatars.githubusercontent.com/u/180023952?v=4" width="100;" alt="vtushar06"/>
+                    <br />
+                    <sub><b>Tushar-Verma</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/yarikoptic">
+                    <img src="https://avatars.githubusercontent.com/u/39889?v=4" width="100;" alt="yarikoptic"/>
+                    <br />
+                    <sub><b>Yaroslav Halchenko</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/angkul07">
                     <img src="https://avatars.githubusercontent.com/u/129066458?v=4" width="100;" alt="angkul07"/>
                     <br />
                     <sub><b>angkul</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/ivanvrlg">
                     <img src="https://avatars.githubusercontent.com/u/131998802?v=4" width="100;" alt="ivanvrlg"/>
