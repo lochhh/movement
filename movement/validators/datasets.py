@@ -1,5 +1,6 @@
 """``attrs`` classes for validating data structures."""
 
+import abc
 import warnings
 from collections.abc import Iterable
 from typing import Any, ClassVar
@@ -78,7 +79,50 @@ def _validate_list_length(
 
 
 @define(kw_only=True)
-class ValidPosesDataset:
+class _BaseValidDataset(abc.ABC):
+    """Abstract base class for valid dataset validators.
+
+    This class provides a common validator interface for individual_names,
+    enforcing that subclasses implement dataset-specific validation logic
+    through the abstract hook _validate_individual_names_impl.
+    """
+
+    individual_names: list[str] | None = field(
+        default=None,
+        converter=converters.optional(_convert_to_list_of_str),
+    )
+
+    @individual_names.validator
+    def _validate_individual_names(self, attribute, value):
+        """Validate individual_names by delegating to the subclass hook."""
+        if value is not None:
+            self._validate_individual_names_impl(attribute, value)
+
+    @abc.abstractmethod
+    def _validate_individual_names_impl(self, attribute, value):
+        """Abstract method for dataset-specific individual_names validation.
+
+        Subclasses must implement this method to perform their specific
+        validation logic for individual_names.
+
+        Parameters
+        ----------
+        attribute : attrs.Attribute
+            The attribute being validated.
+        value : list[str]
+            The value to validate (guaranteed to be not None).
+
+        Raises
+        ------
+        ValueError
+            If the validation fails.
+
+        """
+        pass
+
+
+@define(kw_only=True)
+class ValidPosesDataset(_BaseValidDataset):
     """Class for validating poses data intended for a ``movement`` dataset.
 
     The validator ensures that within the ``movement poses`` dataset:
@@ -131,10 +175,6 @@ class ValidPosesDataset:
 
     # Optional attributes
     confidence_array: np.ndarray | None = field(default=None)
-    individual_names: list[str] | None = field(
-        default=None,
-        converter=converters.optional(_convert_to_list_of_str),
-    )
     keypoint_names: list[str] | None = field(
         default=None,
         converter=converters.optional(_convert_to_list_of_str),
@@ -188,8 +228,12 @@ class ValidPosesDataset:
                 attribute, value, expected_shape=expected_shape
             )
 
-    @individual_names.validator
-    def _validate_individual_names(self, attribute, value):
+    def _validate_individual_names_impl(self, attribute, value):
+        """Validate individual_names for poses dataset.
+
+        For LightningPose, only single individual is supported.
+        Otherwise, check that length matches position_array.shape[-1].
+        """
         if self.source_software == "LightningPose":
             # LightningPose only supports a single individual
             _validate_list_length(attribute, value, 1)
@@ -234,7 +278,7 @@ class ValidPosesDataset:
 
 
 @define(kw_only=True)
-class ValidBboxesDataset:
+class ValidBboxesDataset(_BaseValidDataset):
     """Class for validating bounding boxes data for a ``movement`` dataset.
 
     The validator considers 2D bounding boxes only. It ensures that
@@ -300,12 +344,6 @@ class ValidBboxesDataset:
 
     # Optional attributes
     confidence_array: np.ndarray | None = field(default=None)
-    individual_names: list[str] | None = field(
-        default=None,
-        converter=converters.optional(
-            _convert_to_list_of_str
-        ),  # force into list of strings if not
-    )
     frame_array: np.ndarray | None = field(default=None)
     fps: float | None = field(
         default=None,
@@ -338,23 +376,24 @@ class ValidBboxesDataset:
                 )
             )
 
-    @individual_names.validator
-    def _validate_individual_names(self, attribute, value):
-        if value is not None:
-            _validate_list_length(
-                attribute, value, self.position_array.shape[-1]
-            )
-            # check n_individual_names are unique
-            # NOTE: combined with the requirement above, we are enforcing
-            # unique IDs per frame
-            if len(value) != len(set(value)):
-                raise logger.error(
-                    ValueError(
-                        "individual_names are not unique. "
-                        f"There are {len(value)} elements in the list, but "
-                        f"only {len(set(value))} are unique."
-                    )
+    def _validate_individual_names_impl(self, attribute, value):
+        """Validate individual_names for bboxes dataset.
+
+        Check that length matches position_array.shape[-1] and that
+        all names are unique.
+        """
+        _validate_list_length(attribute, value, self.position_array.shape[-1])
+        # check n_individual_names are unique
+        # NOTE: combined with the requirement above, we are enforcing
+        # unique IDs per frame
+        if len(value) != len(set(value)):
+            raise logger.error(
+                ValueError(
+                    "individual_names are not unique. "
+                    f"There are {len(value)} elements in the list, but "
+                    f"only {len(set(value))} are unique."
                 )
+            )
 
     @confidence_array.validator
     def _validate_confidence_array(self, attribute, value):
