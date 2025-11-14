@@ -1,6 +1,7 @@
 """``attrs`` classes for validating data structures."""
 
 import warnings
+from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from typing import Any, ClassVar
 
@@ -78,7 +79,125 @@ def _validate_list_length(
 
 
 @define(kw_only=True)
-class ValidPosesDataset:
+class _BaseValidDataset(ABC):
+    """Abstract base class for validating movement datasets.
+
+    This class consolidates shared validation logic for confidence_array,
+    individual_names, fps, and source_software attributes.
+    Subclasses must implement the abstract method
+    _validate_individual_names_impl to provide dataset-specific validation
+    for individual_names.
+    """
+
+    # Optional attributes common to both poses and bboxes
+    confidence_array: np.ndarray | None = field(default=None)
+    individual_names: list[str] | None = field(
+        default=None,
+        converter=converters.optional(_convert_to_list_of_str),
+    )
+    fps: float | None = field(
+        default=None,
+        converter=converters.pipe(  # type: ignore
+            converters.optional(float), _convert_fps_to_none_if_invalid
+        ),
+    )
+    source_software: str | None = field(
+        default=None,
+        validator=validators.optional(validators.instance_of(str)),
+    )
+
+    @confidence_array.validator
+    def _validate_confidence_array(self, attribute, value):
+        if value is not None:
+            _validate_type_ndarray(value)
+            # Expected shape is the same as position_array,
+            # but without the `space` dim
+            expected_shape = self._expected_confidence_shape()
+            _validate_array_shape(
+                attribute, value, expected_shape=expected_shape
+            )
+
+    @individual_names.validator
+    def _validate_individual_names(self, attribute, value):
+        """Concrete validator that delegates to abstract implementation."""
+        if value is not None:
+            self._validate_individual_names_impl(attribute, value)
+
+    @abstractmethod
+    def _validate_individual_names_impl(
+        self, attribute: attrs.Attribute, value: list[str]
+    ) -> None:
+        """Abstract method for dataset-specific individual_names validation.
+
+        Subclasses must implement this method to provide their own
+        validation logic for individual_names.
+
+        Parameters
+        ----------
+        attribute : attrs.Attribute
+            The attribute being validated.
+        value : list[str]
+            The list of individual names to validate.
+
+        Raises
+        ------
+        ValueError
+            If the individual_names do not meet the dataset requirements.
+
+        """
+        pass
+
+    @abstractmethod
+    def _expected_confidence_shape(self) -> tuple:
+        """Return the expected shape for confidence_array.
+
+        Subclasses must implement this to define the expected shape
+        based on position_array dimensions.
+        """
+        pass
+
+    @abstractmethod
+    def _expected_individuals_count(self) -> int:
+        """Return the expected number of individuals.
+
+        Subclasses must implement this to define how many individuals
+        are expected based on position_array dimensions.
+        """
+        pass
+
+    def _default_confidence_array(self) -> np.ndarray:
+        """Return a default confidence array filled with NaNs."""
+        return np.full(
+            self._expected_confidence_shape(),
+            np.nan,
+            dtype="float32",
+        )
+
+    def _default_individual_names(self) -> list[str]:
+        """Return default individual names."""
+        return [f"id_{i}" for i in range(self._expected_individuals_count())]
+
+    def _assign_default_confidence_array(self):
+        """Assign default confidence_array if None."""
+        if self.confidence_array is None:
+            self.confidence_array = self._default_confidence_array()
+            logger.warning(
+                "Confidence array was not provided. "
+                "Setting to an array of NaNs."
+            )
+
+    def _assign_default_individual_names(self):
+        """Assign default individual_names if None."""
+        if self.individual_names is None:
+            self.individual_names = self._default_individual_names()
+            logger.warning(
+                "Individual names were not provided. "
+                f"Setting to {self.individual_names}."
+            )
+
+
+@define(kw_only=True)
+class ValidPosesDataset(_BaseValidDataset):
     """Class for validating poses data intended for a ``movement`` dataset.
 
     The validator ensures that within the ``movement poses`` dataset:
@@ -129,25 +248,10 @@ class ValidPosesDataset:
     # Required attributes
     position_array: np.ndarray = field()
 
-    # Optional attributes
-    confidence_array: np.ndarray | None = field(default=None)
-    individual_names: list[str] | None = field(
-        default=None,
-        converter=converters.optional(_convert_to_list_of_str),
-    )
+    # Optional attributes specific to poses
     keypoint_names: list[str] | None = field(
         default=None,
         converter=converters.optional(_convert_to_list_of_str),
-    )
-    fps: float | None = field(
-        default=None,
-        converter=converters.pipe(  # type: ignore
-            converters.optional(float), _convert_fps_to_none_if_invalid
-        ),
-    )
-    source_software: str | None = field(
-        default=None,
-        validator=validators.optional(validators.instance_of(str)),
     )
 
     # Class variables
@@ -175,21 +279,13 @@ class ValidPosesDataset:
                 )
             )
 
-    @confidence_array.validator
-    def _validate_confidence_array(self, attribute, value):
-        if value is not None:
-            _validate_type_ndarray(value)
-            # Expected shape is the same as position_array,
-            # but without the `space` dim
-            expected_shape = (
-                self.position_array.shape[:1] + self.position_array.shape[2:]
-            )
-            _validate_array_shape(
-                attribute, value, expected_shape=expected_shape
-            )
-
-    @individual_names.validator
-    def _validate_individual_names(self, attribute, value):
+    def _validate_individual_names_impl(
+        self, attribute: attrs.Attribute, value: list[str]
+    ) -> None:
+        """Validate individual_names for poses dataset."""
+        # Ensure position_array is valid before accessing its shape
+        if not isinstance(self.position_array, np.ndarray):
+            return  # position_array validator will handle the error
         if self.source_software == "LightningPose":
             # LightningPose only supports a single individual
             _validate_list_length(attribute, value, 1)
@@ -202,27 +298,19 @@ class ValidPosesDataset:
     def _validate_keypoint_names(self, attribute, value):
         _validate_list_length(attribute, value, self.position_array.shape[2])
 
+    def _expected_confidence_shape(self) -> tuple:
+        """Return expected shape for confidence_array in poses dataset."""
+        return self.position_array.shape[:1] + self.position_array.shape[2:]
+
+    def _expected_individuals_count(self) -> int:
+        """Return expected number of individuals in poses dataset."""
+        return self.position_array.shape[-1]
+
     def __attrs_post_init__(self):
         """Assign default values to optional attributes (if None)."""
         position_array_shape = self.position_array.shape
-        if self.confidence_array is None:
-            self.confidence_array = np.full(
-                position_array_shape[:1] + position_array_shape[2:],
-                np.nan,
-                dtype="float32",
-            )
-            logger.warning(
-                "Confidence array was not provided."
-                "Setting to an array of NaNs."
-            )
-        if self.individual_names is None:
-            self.individual_names = [
-                f"id_{i}" for i in range(position_array_shape[-1])
-            ]
-            logger.warning(
-                "Individual names were not provided. "
-                f"Setting to {self.individual_names}."
-            )
+        self._assign_default_confidence_array()
+        self._assign_default_individual_names()
         if self.keypoint_names is None:
             self.keypoint_names = [
                 f"keypoint_{i}" for i in range(position_array_shape[2])
@@ -234,7 +322,7 @@ class ValidPosesDataset:
 
 
 @define(kw_only=True)
-class ValidBboxesDataset:
+class ValidBboxesDataset(_BaseValidDataset):
     """Class for validating bounding boxes data for a ``movement`` dataset.
 
     The validator considers 2D bounding boxes only. It ensures that
@@ -298,25 +386,8 @@ class ValidBboxesDataset:
     position_array: np.ndarray = field()
     shape_array: np.ndarray = field()
 
-    # Optional attributes
-    confidence_array: np.ndarray | None = field(default=None)
-    individual_names: list[str] | None = field(
-        default=None,
-        converter=converters.optional(
-            _convert_to_list_of_str
-        ),  # force into list of strings if not
-    )
+    # Optional attributes specific to bboxes
     frame_array: np.ndarray | None = field(default=None)
-    fps: float | None = field(
-        default=None,
-        converter=converters.pipe(  # type: ignore
-            converters.optional(float), _convert_fps_to_none_if_invalid
-        ),
-    )
-    source_software: str | None = field(
-        default=None,
-        validator=validators.optional(validators.instance_of(str)),
-    )
 
     DIM_NAMES: ClassVar[tuple] = ("time", "space", "individuals")
     VAR_NAMES: ClassVar[tuple] = ("position", "shape", "confidence")
@@ -338,35 +409,24 @@ class ValidBboxesDataset:
                 )
             )
 
-    @individual_names.validator
-    def _validate_individual_names(self, attribute, value):
-        if value is not None:
-            _validate_list_length(
-                attribute, value, self.position_array.shape[-1]
-            )
-            # check n_individual_names are unique
-            # NOTE: combined with the requirement above, we are enforcing
-            # unique IDs per frame
-            if len(value) != len(set(value)):
-                raise logger.error(
-                    ValueError(
-                        "individual_names are not unique. "
-                        f"There are {len(value)} elements in the list, but "
-                        f"only {len(set(value))} are unique."
-                    )
+    def _validate_individual_names_impl(
+        self, attribute: attrs.Attribute, value: list[str]
+    ) -> None:
+        """Validate individual_names for bboxes dataset."""
+        # Ensure position_array is valid before accessing its shape
+        if not isinstance(self.position_array, np.ndarray):
+            return  # position_array validator will handle the error
+        _validate_list_length(attribute, value, self.position_array.shape[-1])
+        # check n_individual_names are unique
+        # NOTE: combined with the requirement above, we are enforcing
+        # unique IDs per frame
+        if len(value) != len(set(value)):
+            raise logger.error(
+                ValueError(
+                    "individual_names are not unique. "
+                    f"There are {len(value)} elements in the list, but "
+                    f"only {len(set(value))} are unique."
                 )
-
-    @confidence_array.validator
-    def _validate_confidence_array(self, attribute, value):
-        if value is not None:
-            _validate_type_ndarray(value)
-            # Expected shape is the same as position_array,
-            # but without the `space` dim
-            expected_shape = (
-                self.position_array.shape[:1] + self.position_array.shape[2:]
-            )
-            _validate_array_shape(
-                attribute, value, expected_shape=expected_shape
             )
 
     @frame_array.validator
@@ -388,6 +448,14 @@ class ValidBboxesDataset:
                     )
                 )
 
+    def _expected_confidence_shape(self) -> tuple:
+        """Return expected shape for confidence_array in bboxes dataset."""
+        return self.position_array.shape[:1] + self.position_array.shape[2:]
+
+    def _expected_individuals_count(self) -> int:
+        """Return expected number of individuals in bboxes dataset."""
+        return self.position_array.shape[-1]
+
     # Define defaults
     def __attrs_post_init__(self):
         """Assign default values to optional attributes (if None).
@@ -398,21 +466,10 @@ class ValidBboxesDataset:
         """
         position_array_shape = self.position_array.shape
         # assign default confidence_array
-        if self.confidence_array is None:
-            self.confidence_array = np.full(
-                position_array_shape[:1] + position_array_shape[2:],
-                np.nan,
-                dtype="float32",
-            )
-            logger.warning(
-                "Confidence array was not provided. "
-                "Setting to an array of NaNs."
-            )
+        self._assign_default_confidence_array()
         # assign default individual_names
         if self.individual_names is None:
-            self.individual_names = [
-                f"id_{i}" for i in range(position_array_shape[-1])
-            ]
+            self.individual_names = self._default_individual_names()
             logger.warning(
                 "Individual names for the bounding boxes "
                 "were not provided. "
