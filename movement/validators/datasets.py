@@ -382,9 +382,7 @@ class ValidBboxesDataset(_BaseValidDataset):
         Check that length matches position_array.shape[-1] and that
         all names are unique.
         """
-        _validate_list_length(
-            attribute, value, self.position_array.shape[-1]
-        )
+        _validate_list_length(attribute, value, self.position_array.shape[-1])
         # check n_individual_names are unique
         # NOTE: combined with the requirement above, we are enforcing
         # unique IDs per frame
