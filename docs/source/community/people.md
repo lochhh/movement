@@ -72,6 +72,13 @@ This is automatically updated via GitHub Actions and should not be modified.
 		</tr>
 		<tr>
             <td align="center">
+                <a href="https://github.com/Tushar7012">
+                    <img src="https://avatars.githubusercontent.com/u/169586650?v=4" width="100;" alt="Tushar7012"/>
+                    <br />
+                    <sub><b>Tushar Das</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/b-peri">
                     <img src="https://avatars.githubusercontent.com/u/77279592?v=4" width="100;" alt="b-peri"/>
                     <br />
@@ -90,13 +97,6 @@ This is automatically updated via GitHub Actions and should not be modified.
                     <img src="https://avatars.githubusercontent.com/u/35690029?v=4" width="100;" alt="Ishaan0132"/>
                     <br />
                     <sub><b>Ishaan Shaikh</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/Tushar7012">
-                    <img src="https://avatars.githubusercontent.com/u/169586650?v=4" width="100;" alt="Tushar7012"/>
-                    <br />
-                    <sub><b>Tushar Das</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -188,8 +188,8 @@ This is automatically updated via GitHub Actions and should not be modified.
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/HARSHDIPSAHA">
-                    <img src="https://avatars.githubusercontent.com/u/141698575?v=4" width="100;" alt="HARSHDIPSAHA"/>
+                <a href="https://github.com/HarshdipSaha">
+                    <img src="https://avatars.githubusercontent.com/u/141698575?v=4" width="100;" alt="HarshdipSaha"/>
                     <br />
                     <sub><b>Harshdip Saha</b></sub>
                 </a>
@@ -426,8 +426,6 @@ providing sample data, or by actively participating in discussions).
                     <sub><b>Angela Albi</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/edeno">
                     <img src="https://avatars.githubusercontent.com/u/8053989?v=4" width="100;" alt="edeno"/>
@@ -435,6 +433,8 @@ providing sample data, or by actively participating in discussions).
                     <sub><b>Eric Denovellis</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/luiztauffer">
                     <img src="https://avatars.githubusercontent.com/u/24541631?v=4" width="100;" alt="luiztauffer"/>
